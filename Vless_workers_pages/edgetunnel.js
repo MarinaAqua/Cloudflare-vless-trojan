@@ -40,7 +40,7 @@ let 更新时间 = 3;
 let userIDLow;
 let userIDTime = "";
 let proxyIPPool = [];
-let path = '/?ed=2560';
+let path = '/clubgratis';
 let 动态UUID = userID;
 let link = [];
 let banHosts = [atob('c3BlZWQuY2xvdWRmbGFyZS5jb20=')];
@@ -1256,7 +1256,7 @@ async function KV(request, env, txt = 'ADD.txt') {
             <!DOCTYPE html>
             <html>
             <head>
-                <title>优选订阅列表</title>
+                <title>Preferred Subscription List</title>
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
                 <style>
@@ -1333,9 +1333,9 @@ async function KV(request, env, txt = 'ADD.txt') {
             </head>
             <body>
                 ################################################################<br>
-                ${FileName} 优选订阅列表:<br>
+                ${FileName} Preferred Subscription List:<br>
                 ---------------------------------------------------------------<br>
-                &nbsp;&nbsp;<strong><a href="javascript:void(0);" id="noticeToggle" onclick="toggleNotice()">注意事项∨</a></strong><br>
+                &nbsp;&nbsp;<strong><a href="javascript:void(0);" id="noticeToggle" onclick="toggleNotice()">Notes∨</a></strong><br>
                 <div id="noticeContent" class="notice-content">
                     ${decodeURIComponent(atob(atob('SlRBNUpUQTVKVEE1SlRBNUpUQTVKVE5EYzNSeWIyNW5KVE5GTVM0bE0wTWxNa1p6ZEhKdmJtY2xNMFVsTWpCQlJFUkJVRWtsTWpBbFJUVWxRVFlsT0RJbFJUWWxPVVVsT1VNbFJUWWxPVGdsUVVZbFJUVWxPRVlsT0VRbFJUUWxRa0lsUVROSlVDVkZSaVZDUXlVNFF5VkZOU1U0UmlWQlJpVkZOQ1ZDUkNVNVF5VkZOQ1ZDT0NWQ1FWQlNUMWhaU1ZBbFJUY2xPVUVsT0RRbFJUZ2xRVVlsT1VRbFJVWWxRa01sT0VNbFJUVWxPRVlsUVVZbFJUVWxRakFsT0RZbE1qSWxNMFp3Y205NGVXbHdKVE5FZEhKMVpTVXlNaVZGTlNVNFJpVTRNaVZGTmlVNU5TVkNNQ1ZGTmlWQ055VkNRaVZGTlNVNFFTVkJNQ1ZGTlNVNE9DVkNNQ1ZGT1NVNU15VkNSU1ZGTmlVNFJTVkJOU1ZGTmlVNVF5VkJRaVZGTlNWQ01DVkNSU1ZGUmlWQ1F5VTRReVZGTkNWQ1JTVTRRaVZGTlNWQk5pVTRNaVZGUmlWQ1F5VTVRU1V6UTJKeUpUTkZDaVV3T1NVd09TVXdPU1V3T1NVd09TVXlObTVpYzNBbE0wSWxNalp1WW5Od0pUTkNhSFIwY0hNbE0wRWxNa1lsTWtaeVlYY3VaMmwwYUhWaWRYTmxjbU52Ym5SbGJuUXVZMjl0SlRKR1kyMXNhWFVsTWtaWGIzSnJaWEpXYkdWemN6SnpkV0lsTWtadFlXbHVKVEpHWVdSa2NtVnpjMlZ6WVhCcExuUjRkQ1V6UTNOMGNtOXVaeVV6UlNVelJuQnliM2g1YVhBbE0wUjBjblZsSlROREpUSkdjM1J5YjI1bkpUTkZKVE5EWW5JbE0wVWxNME5pY2lVelJRb2xNRGtsTURrbE1Ea2xNRGtsTURrbE0wTnpkSEp2Ym1jbE0wVXlMaVV6UXlVeVJuTjBjbTl1WnlVelJTVXlNRUZFUkVGUVNTVXlNQ1ZGTlNWQk5pVTRNaVZGTmlVNVJTVTVReVZGTmlVNU9DVkJSaVV5TUNVelEyRWxNakJvY21WbUpUTkVKVEkzYUhSMGNITWxNMEVsTWtZbE1rWm5hWFJvZFdJdVkyOXRKVEpHV0VsVk1pVXlSa05zYjNWa1pteGhjbVZUY0dWbFpGUmxjM1FsTWpjbE0wVkRiRzkxWkdac1lYSmxVM0JsWldSVVpYTjBKVE5ESlRKR1lTVXpSU1V5TUNWRk55VTVRU1U0TkNVeU1HTnpkaVV5TUNWRk55VkNRaVU1TXlWRk5pVTVSU1U1UXlWRk5pVTVOaVU0TnlWRk5DVkNRaVZDTmlWRlJpVkNReVU0UXlWRk5DVkNSU1U0UWlWRk5TVkJOaVU0TWlWRlJpVkNReVU1UVNVelEySnlKVE5GQ2lVd09TVXdPU1V3T1NVd09TVXdPU1V5Tm01aWMzQWxNMElsTWpadVluTndKVE5DYUhSMGNITWxNMEVsTWtZbE1rWnlZWGN1WjJsMGFIVmlkWE5sY21OdmJuUmxiblF1WTI5dEpUSkdZMjFzYVhVbE1rWlhiM0pyWlhKV2JHVnpjekp6ZFdJbE1rWnRZV2x1SlRKR1EyeHZkV1JtYkdGeVpWTndaV1ZrVkdWemRDNWpjM1lsTTBOaWNpVXpSU1V6UTJKeUpUTkZDaVV3T1NVd09TVXdPU1V3T1NVd09TVXlObTVpYzNBbE0wSWxNalp1WW5Od0pUTkNMU1V5TUNWRk5TVkJOaVU0TWlWRk9TVTVReVU0TUNWRk5pVTRReVU0TnlWRk5TVkJSU1U1UVRJd05UTWxSVGNsUVVJbFFVWWxSVFVsT0VZbFFUTWxSVFVsT0VZbFFVWWxSVFVsUWpBbE9EWWxNaklsTTBad2IzSjBKVE5FTWpBMU15VXlNaVZGTlNVNFJpVTRNaVZGTmlVNU5TVkNNQ1ZGTmlWQ055VkNRaVZGTlNVNFFTVkJNQ1ZGTlNVNE9DVkNNQ1ZGT1NVNU15VkNSU1ZGTmlVNFJTVkJOU1ZGTmlVNVF5VkJRaVZGTlNWQ01DVkNSU1ZGUmlWQ1F5VTRReVZGTkNWQ1JTVTRRaVZGTlNWQk5pVTRNaVZGUmlWQ1F5VTVRU1V6UTJKeUpUTkZDaVV3T1NVd09TVXdPU1V3T1NVd09TVXlObTVpYzNBbE0wSWxNalp1WW5Od0pUTkNhSFIwY0hNbE0wRWxNa1lsTWtaeVlYY3VaMmwwYUhWaWRYTmxjbU52Ym5SbGJuUXVZMjl0SlRKR1kyMXNhWFVsTWtaWGIzSnJaWEpXYkdWemN6SnpkV0lsTWtadFlXbHVKVEpHUTJ4dmRXUm1iR0Z5WlZOd1pXVmtWR1Z6ZEM1amMzWWxNME56ZEhKdmJtY2xNMFVsTTBad2IzSjBKVE5FTWpBMU15VXpReVV5Um5OMGNtOXVaeVV6UlNVelEySnlKVE5GSlRORFluSWxNMFVLSlRBNUpUQTVKVEE1SlRBNUpUQTVKVEkyYm1KemNDVXpRaVV5Tm01aWMzQWxNMEl0SlRJd0pVVTFKVUUySlRneUpVVTVKVGxESlRnd0pVVTJKVGhESlRnM0pVVTFKVUZGSlRsQkpVVTRKVGhCSlRneUpVVTNKVGd5SlVJNUpVVTFKVUUwSlRnM0pVVTJKVUl6SlVFNEpVVTFKVGhHSlVGR0pVVTFKVUl3SlRnMkpUSXlKVE5HYVdRbE0wUkRSaVZGTkNWQ1F5VTVPQ1ZGT1NVNE1DVTRPU1V5TWlWRk5TVTRSaVU0TWlWRk5pVTVOU1ZDTUNWRk5pVkNOeVZDUWlWRk5TVTRRU1ZCTUNWRk5TVTRPQ1ZDTUNWRk9TVTVNeVZDUlNWRk5pVTRSU1ZCTlNWRk5pVTVReVZCUWlWRk5TVkNNQ1ZDUlNWRlJpVkNReVU0UXlWRk5DVkNSU1U0UWlWRk5TVkJOaVU0TWlWRlJpVkNReVU1UVNVelEySnlKVE5GQ2lVd09TVXdPU1V3T1NVd09TVXdPU1V5Tm01aWMzQWxNMElsTWpadVluTndKVE5DYUhSMGNITWxNMEVsTWtZbE1rWnlZWGN1WjJsMGFIVmlkWE5sY21OdmJuUmxiblF1WTI5dEpUSkdZMjFzYVhVbE1rWlhiM0pyWlhKV2JHVnpjekp6ZFdJbE1rWnRZV2x1SlRKR1EyeHZkV1JtYkdGeVpWTndaV1ZrVkdWemRDNWpjM1lsTTBOemRISnZibWNsTTBVbE0wWnBaQ1V6UkVOR0pVVTBKVUpESlRrNEpVVTVKVGd3SlRnNUpUTkRKVEpHYzNSeWIyNW5KVE5GSlRORFluSWxNMFVsTTBOaWNpVXpSUW9sTURrbE1Ea2xNRGtsTURrbE1Ea2xNalp1WW5Od0pUTkNKVEkyYm1KemNDVXpRaTBsTWpBbFJUVWxRVFlsT0RJbFJUa2xPVU1sT0RBbFJUWWxPRU1sT0RjbFJUVWxRVVVsT1VFbFJUVWxRVFFsT1VFbFJUUWxRamdsUVVFbFJUVWxPRVlsT0RJbFJUWWxPVFVsUWpBbFJUVWxPRGdsT1RrbFJUa2xPVU1sT0RBbFJUZ2xRVFlsT0RFbFJUUWxRa1FsUWtZbFJUY2xPVFFsUVRnbE1qY2xNallsTWpjbFJUVWxPREVsT1VFbFJUa2xPVGNsUWpRbFJUa2xPVUVsT1RRbFJVWWxRa01sT0VNbFJUUWxRa1VsT0VJbFJUVWxRVFlsT0RJbFJVWWxRa01sT1VFbE0wTmljaVV6UlFvbE1Ea2xNRGtsTURrbE1Ea2xNRGtsTWpadVluTndKVE5DSlRJMmJtSnpjQ1V6UW1oMGRIQnpKVE5CSlRKR0pUSkdjbUYzTG1kcGRHaDFZblZ6WlhKamIyNTBaVzUwTG1OdmJTVXlSbU50YkdsMUpUSkdWMjl5YTJWeVZteGxjM015YzNWaUpUSkdiV0ZwYmlVeVJrTnNiM1ZrWm14aGNtVlRjR1ZsWkZSbGMzUXVZM04ySlROR2FXUWxNMFJEUmlWRk5DVkNReVU1T0NWRk9TVTRNQ1U0T1NVelEzTjBjbTl1WnlVelJTVXlOaVV6UXlVeVJuTjBjbTl1WnlVelJYQnZjblFsTTBReU1EVXpKVE5EWW5JbE0wVT0=')))}
                 </div>
@@ -1345,15 +1345,15 @@ async function KV(request, env, txt = 'ADD.txt') {
                         placeholder="${decodeURIComponent(atob('QUREJUU3JUE0JUJBJUU0JUJFJThCJUVGJUJDJTlBCnZpc2EuY24lMjMlRTQlQkMlOTglRTklODAlODklRTUlOUYlOUYlRTUlOTAlOEQKMTI3LjAuMC4xJTNBMTIzNCUyM0NGbmF0CiU1QjI2MDYlM0E0NzAwJTNBJTNBJTVEJTNBMjA1MyUyM0lQdjYKCiVFNiVCMyVBOCVFNiU4NCU4RiVFRiVCQyU5QQolRTYlQUYlOEYlRTglQTElOEMlRTQlQjglODAlRTQlQjglQUElRTUlOUMlQjAlRTUlOUQlODAlRUYlQkMlOEMlRTYlQTAlQkMlRTUlQkMlOEYlRTQlQjglQkElMjAlRTUlOUMlQjAlRTUlOUQlODAlM0ElRTclQUIlQUYlRTUlOEYlQTMlMjMlRTUlQTQlODclRTYlQjMlQTgKSVB2NiVFNSU5QyVCMCVFNSU5RCU4MCVFOSU5QyU4MCVFOCVBNiU4MSVFNyU5NCVBOCVFNCVCOCVBRCVFNiU4QiVBQyVFNSU4RiVCNyVFNiU4QiVBQyVFOCVCNSVCNyVFNiU5RCVBNSVFRiVCQyU4QyVFNSVBNiU4MiVFRiVCQyU5QSU1QjI2MDYlM0E0NzAwJTNBJTNBJTVEJTNBMjA1MwolRTclQUIlQUYlRTUlOEYlQTMlRTQlQjglOEQlRTUlODYlOTklRUYlQkMlOEMlRTklQkIlOTglRTglQUUlQTQlRTQlQjglQkElMjA0NDMlMjAlRTclQUIlQUYlRTUlOEYlQTMlRUYlQkMlOEMlRTUlQTYlODIlRUYlQkMlOUF2aXNhLmNuJTIzJUU0JUJDJTk4JUU5JTgwJTg5JUU1JTlGJTlGJUU1JTkwJThECgoKQUREQVBJJUU3JUE0JUJBJUU0JUJFJThCJUVGJUJDJTlBCmh0dHBzJTNBJTJGJTJGcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSUyRmNtbGl1JTJGV29ya2VyVmxlc3Myc3ViJTJGcmVmcyUyRmhlYWRzJTJGbWFpbiUyRmFkZHJlc3Nlc2FwaS50eHQKCiVFNiVCMyVBOCVFNiU4NCU4RiVFRiVCQyU5QUFEREFQSSVFNyU5QiVCNCVFNiU4RSVBNSVFNiVCNyVCQiVFNSU4QSVBMCVFNyU5QiVCNCVFOSU5MyVCRSVFNSU4RCVCMyVFNSU4RiVBRg=='))}"
                         id="content">${content}</textarea>
                     <div class="save-container">
-                        <button class="back-btn" onclick="goBack()">返回配置页</button>
-                        <button class="bestip-btn" onclick="goBestIP()">在线优选IP</button>
-                        <button class="save-btn" onclick="saveContent(this)">保存</button>
+                        <button class="back-btn" onclick="goBack()">Return to configuration page</button>
+                        <button class="bestip-btn" onclick="goBestIP()">Online IP optimization</button>
+                        <button class="save-btn" onclick="saveContent(this)">keep</button>
                         <span class="save-status" id="saveStatus"></span>
                     </div>
                     <br>
                     ################################################################<br>
                     ${cmad}
-                    ` : '<p>未绑定KV空间</p>'}
+                    ` : '<p>Unbound KV space</p>'}
                 </div>
         
                 <script>
@@ -1382,33 +1382,33 @@ async function KV(request, env, txt = 'ADD.txt') {
                     function saveContent(button) {
                         try {
                             const updateButtonText = (step) => {
-                                button.textContent = \`保存中: \${step}\`;
+                                button.textContent = \`Saving: \${step}\`;
                             };
-                            // 检测是否为iOS设备
+                            // Detect if it is an iOS device
                             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
                             
-                            // 仅在非iOS设备上执行replaceFullwidthColon
+                            // Only executed on non-iOS devices replaceFullwidthColon
                             if (!isIOS) {
                                 replaceFullwidthColon();
                             }
-                            updateButtonText('开始保存');
+                            updateButtonText('Start saving');
                             button.disabled = true;
-                            // 获取textarea内容和原始内容
+                            // Get textarea content and original content
                             const textarea = document.getElementById('content');
                             if (!textarea) {
-                                throw new Error('找不到文本编辑区域');
+                                throw new Error('Text editing area not found');
                             }
-                            updateButtonText('获取内容');
+                            updateButtonText('Get content');
                             let newContent;
                             let originalContent;
                             try {
                                 newContent = textarea.value || '';
                                 originalContent = textarea.defaultValue || '';
                             } catch (e) {
-                                console.error('获取内容错误:', e);
-                                throw new Error('无法获取编辑内容');
+                                console.error('Error getting content:', e);
+                                throw new Error('Unable to retrieve edit content');
                             }
-                            updateButtonText('准备状态更新函数');
+                            updateButtonText('Ready status update function');
                             const updateStatus = (message, isError = false) => {
                                 const statusElem = document.getElementById('saveStatus');
                                 if (statusElem) {
@@ -1416,13 +1416,13 @@ async function KV(request, env, txt = 'ADD.txt') {
                                     statusElem.style.color = isError ? 'red' : '#666';
                                 }
                             };
-                            updateButtonText('准备按钮重置函数');
+                            updateButtonText('Prepare the button reset function');
                             const resetButton = () => {
-                                button.textContent = '保存';
+                                button.textContent = 'keep';
                                 button.disabled = false;
                             };
                             if (newContent !== originalContent) {
-                                updateButtonText('发送保存请求');
+                                updateButtonText('Send save request');
                                 fetch(window.location.href, {
                                     method: 'POST',
                                     body: newContent,
@@ -1432,35 +1432,35 @@ async function KV(request, env, txt = 'ADD.txt') {
                                     cache: 'no-cache'
                                 })
                                 .then(response => {
-                                    updateButtonText('检查响应状态');
+                                    updateButtonText('Check response status');
                                     if (!response.ok) {
                                         throw new Error(\`HTTP error! status: \${response.status}\`);
                                     }
-                                    updateButtonText('更新保存状态');
+                                    updateButtonText('Update save status');
                                     const now = new Date().toLocaleString();
-                                    document.title = \`编辑已保存 \${now}\`;
-                                    updateStatus(\`已保存 \${now}\`);
+                                    document.title = \`Edits saved \${now}\`;
+                                    updateStatus(\`Saved \${now}\`);
                                 })
                                 .catch(error => {
-                                    updateButtonText('处理错误');
+                                    updateButtonText('Handling Errors');
                                     console.error('Save error:', error);
-                                    updateStatus(\`保存失败: \${error.message}\`, true);
+                                    updateStatus(\`Save failed: \${error.message}\`, true);
                                 })
                                 .finally(() => {
                                     resetButton();
                                 });
                             } else {
-                                updateButtonText('检查内容变化');
-                                updateStatus('内容未变化');
+                                updateButtonText('Check content changes');
+                                updateStatus('Content unchanged');
                                 resetButton();
                             }
                         } catch (error) {
-                            console.error('保存过程出错:', error);
-                            button.textContent = '保存';
+                            console.error('Error during save:', error);
+                            button.textContent = 'keep';
                             button.disabled = false;
                             const statusElem = document.getElementById('saveStatus');
                             if (statusElem) {
-                                statusElem.textContent = \`错误: \${error.message}\`;
+                                statusElem.textContent = \`mistake: \${error.message}\`;
                                 statusElem.style.color = 'red';
                             }
                         }
@@ -1478,14 +1478,14 @@ async function KV(request, env, txt = 'ADD.txt') {
                     const noticeToggle = document.getElementById('noticeToggle');
                     if (noticeContent.style.display === 'none' || noticeContent.style.display === '') {
                         noticeContent.style.display = 'block';
-                        noticeToggle.textContent = '注意事项∧';
+                        noticeToggle.textContent = 'Notes∧';
                     } else {
                         noticeContent.style.display = 'none';
-                        noticeToggle.textContent = '注意事项∨';
+                        noticeToggle.textContent = 'Notes∨';
                     }
                 }
         
-                // 初始化 noticeContent 的 display 属性
+                // initialization noticeContent The display property
                 document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById('noticeContent').style.display = 'none';
                 });
