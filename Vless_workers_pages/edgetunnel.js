@@ -1,3 +1,4 @@
+
 import { connect } from 'cloudflare:sockets';
 
 let userID = '';
@@ -25,22 +26,22 @@ let addressesnotls = [];
 let addressesnotlsapi = [];
 let addressescsv = [];
 let DLS = 8;
-let remarkIndex = 1;//CSV comment column offset
+let remarkIndex = 1;//CSV备注所在列偏移量
 let FileName = atob('ZWRnZXR1bm5lbA==');
 let BotToken;
 let ChatID;
 let proxyhosts = [];
 let proxyhostsURL;
-let Request CF reverse IP = 'false';
+let 请求CF反代IP = 'false';
 const httpPorts = ["8080", "8880", "2052", "2082", "2086", "2095"];
 let httpsPorts = ["2053", "2083", "2087", "2096", "8443"];
-let Validity period = 30;
-let Update Time = 3;
+let 有效时间 = 30;
+let 更新时间 = 3;
 let userIDLow;
 let userIDTime = "";
 let proxyIPPool = [];
-let path = '/clubgratis';
-let Dynamic UUID = userID;
+let path = '/?ed=2560';
+let 动态UUID = userID;
 let link = [];
 let banHosts = [atob('c3BlZWQuY2xvdWRmbGFyZS5jb20=')];
 let SCV = 'true';
@@ -89,16 +90,16 @@ export default {
             const userAgent = UA.toLowerCase();
             userID = env.UUID || env.uuid || env.PASSWORD || env.pswd || userID;
             if (env.KEY || env.TOKEN || (userID && !isValidUUID(userID))) {
-                Dynamic UUID = env.KEY || env.TOKEN || userID;
-                Validity period = Number(env.TIME) || Validity period;
-                Update Time = Number(env.UPTIME) || Update Time;
-                const userIDs = await Generate dynamic UUID(Dynamic UUID);
+                动态UUID = env.KEY || env.TOKEN || userID;
+                有效时间 = Number(env.TIME) || 有效时间;
+                更新时间 = Number(env.UPTIME) || 更新时间;
+                const userIDs = await 生成动态UUID(动态UUID);
                 userID = userIDs[0];
                 userIDLow = userIDs[1];
             } else 动态UUID = userID;
 
             if (!userID) {
-                return new Response('Please set your UUID variable，Or try to retry the deployment，Check if the variable is valid?', {
+                return new Response('请设置你的UUID变量，或尝试重试部署，检查变量是否生效？', {
                     status: 404,
                     headers: {
                         "Content-Type": "text/plain;charset=utf-8",
@@ -108,7 +109,7 @@ export default {
             const currentDate = new Date();
             currentDate.setHours(0, 0, 0, 0);
             const timestamp = Math.ceil(currentDate.getTime() / 1000);
-            const fakeUserIDMD5 = await Double hashing(`${userID}${timestamp}`);
+            const fakeUserIDMD5 = await 双重哈希(`${userID}${timestamp}`);
             const fakeUserID = [
                 fakeUserIDMD5.slice(0, 8),
                 fakeUserIDMD5.slice(8, 12),
@@ -120,26 +121,26 @@ export default {
             const fakeHostName = `${fakeUserIDMD5.slice(6, 9)}.${fakeUserIDMD5.slice(13, 19)}`;
 
             proxyIP = env.PROXYIP || env.proxyip || proxyIP;
-            proxyIPs = await tidy(proxyIP);
+            proxyIPs = await 整理(proxyIP);
             proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
             proxyIP = proxyIP ? proxyIP.toLowerCase() : request.cf.colo + '.PrOXYip.CMLiussss.NeT';
             socks5Address = env.HTTP || env.SOCKS5 || socks5Address;
-            socks5s = await tidy(socks5Address);
+            socks5s = await 整理(socks5Address);
             socks5Address = socks5s[Math.floor(Math.random() * socks5s.length)];
             enableHttp = env.HTTP ? true : socks5Address.toLowerCase().includes('http://');
             socks5Address = socks5Address.split('//')[1] || socks5Address;
-            if (env.GO2SOCKS5) go2Socks5s = await tidy(env.GO2SOCKS5);
-            if (env.CFPORTS) httpsPorts = await tidy(env.CFPORTS);
-            if (env.BAN) banHosts = await tidy(env.BAN);
+            if (env.GO2SOCKS5) go2Socks5s = await 整理(env.GO2SOCKS5);
+            if (env.CFPORTS) httpsPorts = await 整理(env.CFPORTS);
+            if (env.BAN) banHosts = await 整理(env.BAN);
             if (socks5Address) {
                 try {
                     socks5AddressParser(socks5Address);
-                    Request CF reverse IP = env.RPROXYIP || 'false';
+                    请求CF反代IP = env.RPROXYIP || 'false';
                     enableSocks = true;
                 } catch (err) {
                     let e = err;
                     console.log(e.toString());
-                    Request CF reverse IP = env.RPROXYIP || !proxyIP ? 'true' : 'false';
+                    请求CF反代IP = env.RPROXYIP || !proxyIP ? 'true' : 'false';
                     enableSocks = false;
                 }
             } else {
@@ -149,11 +150,11 @@ export default {
             const upgradeHeader = request.headers.get('Upgrade');
             const url = new URL(request.url);
             if (!upgradeHeader || upgradeHeader !== 'websocket') {
-                if (env.ADD) addresses = await tidy(env.ADD);
-                if (env.ADDAPI) addressesapi = await tidy(env.ADDAPI);
-                if (env.ADDNOTLS) addressesnotls = await tidy(env.ADDNOTLS);
-                if (env.ADDNOTLSAPI) addressesnotlsapi = await tidy(env.ADDNOTLSAPI);
-                if (env.ADDCSV) addressescsv = await tidy(env.ADDCSV);
+                if (env.ADD) addresses = await 整理(env.ADD);
+                if (env.ADDAPI) addressesapi = await 整理(env.ADDAPI);
+                if (env.ADDNOTLS) addressesnotls = await 整理(env.ADDNOTLS);
+                if (env.ADDNOTLSAPI) addressesnotlsapi = await 整理(env.ADDNOTLSAPI);
+                if (env.ADDCSV) addressescsv = await 整理(env.ADDCSV);
                 DLS = Number(env.DLS) || DLS;
                 remarkIndex = Number(env.CSVREMARK) || remarkIndex;
                 BotToken = env.TGTOKEN || BotToken;
@@ -161,7 +162,7 @@ export default {
                 FileName = env.SUBNAME || FileName;
                 subEmoji = env.SUBEMOJI || env.EMOJI || subEmoji;
                 if (subEmoji == '0') subEmoji = 'false';
-                if (env.LINK) link = await tidy(env.LINK);
+                if (env.LINK) link = await 整理(env.LINK);
                 let sub = env.SUB || '';
                 subConverter = env.SUBAPI || subConverter;
                 if (subConverter.includes("http://")) {
@@ -176,43 +177,43 @@ export default {
 
                 if (url.searchParams.has('proxyip')) {
                     path = `/proxyip=${url.searchParams.get('proxyip')}`;
-                    Request CF reverse IP = 'false';
+                    请求CF反代IP = 'false';
                 } else if (url.searchParams.has('socks5')) {
                     path = url.searchParams.has('globalproxy') ? `/?socks5=${url.searchParams.get('socks5')}&globalproxy` : `/?socks5=${url.searchParams.get('socks5')}`;
-                    Request CF reverse IP = 'false';
+                    请求CF反代IP = 'false';
                 } else if (url.searchParams.has('socks')) {
                     path = url.searchParams.has('globalproxy') ? `/?socks5=${url.searchParams.get('socks')}&globalproxy` : `/?socks5=${url.searchParams.get('socks')}`;
-                    Request CF reverse IP = 'false';
+                    请求CF反代IP = 'false';
                 } else if (url.searchParams.has('http')) {
                     path = url.searchParams.has('globalproxy') ? `/?http=${url.searchParams.get('http')}&globalproxy` : `/?http=${url.searchParams.get('http')}`;
-                    Request CF reverse IP = 'false';
+                    请求CF反代IP = 'false';
                 }
 
                 SCV = env.SCV || SCV;
                 if (!SCV || SCV == '0' || SCV == 'false') allowInsecure = '';
                 else SCV = 'true';
-                const path = url.pathname.toLowerCase();
-                if (path == '/') {
+                const 路径 = url.pathname.toLowerCase();
+                if (路径 == '/') {
                     if (env.URL302) return Response.redirect(env.URL302, 302);
-                    else if (env.URL) return await Proxy URL(env.URL, url);
+                    else if (env.URL) return await 代理URL(env.URL, url);
                     else return new Response(await nginx(), {
                         status: 200,
                         headers: {
                             'Content-Type': 'text/html; charset=UTF-8',
                         },
                     });
-                } else if (path == `/${fakeUserID}`) {
-                    const fakeConfig = await Generate Configuration information(userID, request.headers.get('Host'), sub, 'CF-Workers-SUB', Request CF reverse IP, url, fakeUserID, fakeHostName, env);
+                } else if (路径 == `/${fakeUserID}`) {
+                    const fakeConfig = await 生成配置信息(userID, request.headers.get('Host'), sub, 'CF-Workers-SUB', 请求CF反代IP, url, fakeUserID, fakeHostName, env);
                     return new Response(`${fakeConfig}`, { status: 200 });
-                } else if ((url.pathname == `/${Dynamic UUID}/config.json` || path == `/${userID}/config.json`) && url.searchParams.get('token') === await Double hashing(fakeUserID + UA)) {
-                    return await config_Json(userID, request.headers.get('Host'), sub, UA, Request CF reverse IP, url, fakeUserID, fakeHostName, env);
-                } else if (url.pathname == `/${Dynamic UUID}/edit` || path == `/${userID}/edit`) {
+                } else if ((url.pathname == `/${动态UUID}/config.json` || 路径 == `/${userID}/config.json`) && url.searchParams.get('token') === await 双重哈希(fakeUserID + UA)) {
+                    return await config_Json(userID, request.headers.get('Host'), sub, UA, 请求CF反代IP, url, fakeUserID, fakeHostName, env);
+                } else if (url.pathname == `/${动态UUID}/edit` || 路径 == `/${userID}/edit`) {
                     return await KV(request, env);
-                } else if (url.pathname == `/${Dynamic UUID}/bestip` || path == `/${userID}/bestip`) {
+                } else if (url.pathname == `/${动态UUID}/bestip` || 路径 == `/${userID}/bestip`) {
                     return await bestIP(request, env);
-                } else if (url.pathname == `/${Dynamic UUID}` || path == `/${userID}`) {
-                    await sendMessage(`#Get Subscription ${FileName}`, request.headers.get('CF-Connecting-IP'), `UA: ${UA}</tg-spoiler>\n domain name: ${url.hostname}\n<tg-spoiler>Entrance: ${url.pathname + url.search}</tg-spoiler>`);
-                    const Vless Config = await Generate Configuration information(userID, request.headers.get('Host'), sub, UA, Request CF reverse IP, url, fakeUserID, fakeHostName, env);
+                } else if (url.pathname == `/${动态UUID}` || 路径 == `/${userID}`) {
+                    await sendMessage(`#获取订阅 ${FileName}`, request.headers.get('CF-Connecting-IP'), `UA: ${UA}</tg-spoiler>\n域名: ${url.hostname}\n<tg-spoiler>入口: ${url.pathname + url.search}</tg-spoiler>`);
+                    const 维列斯Config = await 生成配置信息(userID, request.headers.get('Host'), sub, UA, 请求CF反代IP, url, fakeUserID, fakeHostName, env);
                     const now = Date.now();
                     //const timestamp = Math.floor(now / 1000);
                     const today = new Date(now);
@@ -228,7 +229,7 @@ export default {
                         total = env.CF_ALL ? Number(env.CF_ALL) : (1024 * 100); // 100K
                     }
                     if (userAgent && userAgent.includes('mozilla')) {
-                        return new Response(Vless Config, {
+                        return new Response(维列斯Config, {
                             status: 200,
                             headers: {
                                 "Content-Type": "text/html;charset=utf-8",
@@ -238,7 +239,7 @@ export default {
                             }
                         });
                     } else {
-                        return new Response(Vless Config, {
+                        return new Response(维列斯Config, {
                             status: 200,
                             headers: {
                                 "Content-Disposition": `attachment; filename=${FileName}; filename*=utf-8''${encodeURIComponent(FileName)}`,
@@ -251,8 +252,8 @@ export default {
                     }
                 } else {
                     if (env.URL302) return Response.redirect(env.URL302, 302);
-                    else if (env.URL) return await Proxy URL(env.URL, url);
-                    else return new Response('No doubt!Your UUID is wrong!!!', { status: 404 });
+                    else if (env.URL) return await 代理URL(env.URL, url);
+                    else return new Response('不用怀疑！你UUID就是错的！！！', { status: 404 });
                 }
             } else {
                 socks5Address = url.searchParams.get('socks5') || url.searchParams.get('http') || socks5Address;
@@ -270,7 +271,7 @@ export default {
                         if (base64Regex.test(userPassword) && !userPassword.includes(':')) userPassword = atob(userPassword);
                         socks5Address = `${userPassword}@${socks5Address.substring(lastAtIndex + 1)}`;
                     }
-                    go2Socks5s = ['all in'];//Open Global SOCKS5
+                    go2Socks5s = ['all in'];//开启全局SOCKS5
                 }
 
                 if (socks5Address) {
@@ -333,15 +334,15 @@ export default {
  * Tā apstrādā notikumus bez drošības riskiem vai ļaunprātīgām darbībām.
  */
 /**
- * This is not real UUID validation, but a simplified version
- * @param {string} uuid To be verified UUID String
- * @returns {boolean} If the string matches UUID The format is returned true，Otherwise return false
+ * 这不是真正的 UUID 验证，而是一个简化的版本
+ * @param {string} uuid 要验证的 UUID 字符串
+ * @returns {boolean} 如果字符串匹配 UUID 格式则返回 true，否则返回 false
  */
 function isValidUUID(uuid) {
-    // Define a regular expression to match the UUID format
+    // 定义一个正则表达式来匹配 UUID 格式
     const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[4][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
-    // Using regular expressions to test UUID strings
+    // 使用正则表达式测试 UUID 字符串
     return uuidRegex.test(uuid);
 }
 
@@ -366,21 +367,21 @@ function isValidUUID(uuid) {
  * यसले घटना प्रशोधनलाई सुरक्षा जोखिमहरू बिना र दुर्भावनापूर्ण गतिविधिहरू बिना गर्दछ.
  */
 async function socks5AddressParser(address) {
-    // Use "@" to separate the address into the authentication part and the server address part
+    // 使用 "@" 分割地址，分为认证部分和服务器地址部分
     const lastAtIndex = address.lastIndexOf("@");
     let [latter, former] = lastAtIndex === -1 ? [address, undefined] : [address.substring(lastAtIndex + 1), address.substring(0, lastAtIndex)];
     let username, password, hostname, port;
 
-    // If the former part exists, it means that authentication information is provided.
+    // 如果存在 former 部分，说明提供了认证信息
     if (former) {
         const formers = former.split(":");
         if (formers.length !== 2) {
-            throw new Error('Invalid SOCKS address format：The authentication part must be "username:password" form');
+            throw new Error('无效的 SOCKS 地址格式：认证部分必须是 "username:password" 的形式');
         }
         [username, password] = formers;
     }
 
-    // Resolution server address part
+    // 解析服务器地址部分
     const latters = latter.split(":");
     // 检查是否是IPv6地址带端口格式 [xxx]:port
     if (latters.length > 2 && latter.includes("]:")) {
@@ -408,12 +409,12 @@ async function socks5AddressParser(address) {
     }
 
     //if (/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(hostname)) hostname = `${atob('d3d3Lg==')}${hostname}${atob('LmlwLjA5MDIyNy54eXo=')}`;
-    // Returns the parsed result
+    // 返回解析后的结果
     return {
-        username,  // Username, or undefined if none
-        password,  // Password, or undefined if none
-        hostname,  // Host name, which can be a domain name, IPv4 or IPv6 address
-        port,	 // Port number, converted to a numeric type
+        username,  // 用户名，如果没有则为 undefined
+        password,  // 密码，如果没有则为 undefined
+        hostname,  // 主机名，可以是域名、IPv4 或 IPv6 地址
+        port,	 // 端口号，已转换为数字类型
     }
 }
 
@@ -1497,8 +1498,8 @@ async function KV(request, env, txt = 'ADD.txt') {
             headers: { "Content-Type": "text/html;charset=utf-8" }
         });
     } catch (error) {
-        console.error('处理请求时发生错误:', error);
-        return new Response("服务器错误: " + error.message, {
+        console.error('An error occurred while processing the request:', error);
+        return new Response("Server Error: " + error.message, {
             status: 500,
             headers: { "Content-Type": "text/plain;charset=utf-8" }
         });
@@ -1934,10 +1935,10 @@ async function bestIP(request, env, txt = 'ADD.txt') {
         }
     }
 
-    // 移除初始IP加载，改为在前端动态加载
-    const cfIPs = []; // 初始为空数组
+    // Removed initial IP loading and changed to dynamic loading on the front end
+    const cfIPs = []; // Initially an empty array
 
-    // 判断是否为中国用户
+    // Determine whether the user is from China
     const isChina = country === 'CN';
     const countryDisplayClass = isChina ? '' : 'proxy-warning';
     const countryDisplayText = isChina ? `${country}` : `${country} ⚠️`;
@@ -1946,7 +1947,7 @@ async function bestIP(request, env, txt = 'ADD.txt') {
     <!DOCTYPE html>
     <html>
     <head>
-    <title>Cloudflare IP优选</title>
+    <title>Cloudflare IP optimization</title>
     <style>
         body {
             width: 80%;
@@ -2269,61 +2270,61 @@ async function bestIP(request, env, txt = 'ADD.txt') {
     </style>
     </head>
     <body>
-    <h1>在线优选IP</h1>
+    <h1>Online IP optimization</h1>
     
     ${!isChina ? `
     <div class="warning-notice">
-        <h3>🚨 代理检测警告</h3>
-        <p><strong>检测到您当前很可能处于代理/VPN环境中！</strong></p>
-        <p>在代理状态下进行的IP优选测试结果将不准确，可能导致：</p>
+        <h3>🚨 Proxy Detection Warning</h3>
+        <p><strong>It is detected that you are currently in a proxy/VPN environment！</strong></p>
+        <p>The results of the IP optimization test performed in proxy mode will be inaccurate，May cause：</p>
         <ul>
-            <li>延迟数据失真，无法反映真实网络状况</li>
-            <li>优选出的IP在直连环境下表现不佳</li>
-            <li>测试结果对实际使用场景参考价值有限</li>
+            <li>Delayed data distortion，Unable to reflect the actual network status</li>
+            <li>The selected IP performs poorly in a direct connection environment</li>
+            <li>The test results have limited reference value for actual usage scenarios</li>
         </ul>
-        <p><strong>建议操作：</strong>请关闭所有代理软件（VPN、科学上网工具等），确保处于直连网络环境后重新访问本页面。</p>
+        <p><strong>Recommended action：</strong>Please close all proxy software（VPN、Scientific Internet access tools, etc.），Make sure you are in a direct network environment and then visit this page again。</p>
     </div>
     ` : ''}
 
     <div class="stats">
-        <h2>统计信息</h2>
-        <p><strong>您的国家：</strong><span class="${countryDisplayClass}">${countryDisplayText}</span></p>
-        <p><strong>获取到的IP总数：</strong><span id="ip-count">点击开始测试后加载</span></p>
-        <p><strong>测试进度：</strong><span id="progress-text">未开始</span></p>
+        <h2>Statistics</h2>
+        <p><strong>Your country：</strong><span class="${countryDisplayClass}">${countryDisplayText}</span></p>
+        <p><strong>Total number of IP addresses obtained：</strong><span id="ip-count">Click to start the test and load</span></p>
+        <p><strong>Testing progress：</strong><span id="progress-text">Not started</span></p>
         <div class="progress">
             <div class="progress-bar" id="progress-bar"></div>
         </div>
         <div class="test-info">
-            <p><strong>📊 测试说明：</strong>当前优选方式仅进行网络延迟测试，主要评估连接响应速度，并未包含带宽速度测试。延迟测试可快速筛选出响应最快的IP节点，适合日常使用场景的初步优选。</p>
+            <p><strong>📊 Test Description：</strong>The current preferred method is to only test network latency，Mainly evaluates connection response speed，Bandwidth speed test is not included。Latency testing can quickly filter out the fastest responding IP nodes，Preliminary selection suitable for daily use scenarios。</p>
         </div>
     </div>
     
     <div class="warm-tips" id="warm-tips">
         <h3>💡 温馨提示</h3>
-        <p><strong>优选完成但测试"真连接延迟"为 -1？</strong>这很有可能是您的网络运营商对你的请求进行了阻断。</p>
-        <p><strong>建议尝试以下解决方案：</strong></p>
+        <p><strong>Preferably completed but tested"True connection delay"for -1？</strong>This is most likely because your network operator blocked your request。</p>
+        <p><strong>It is recommended to try the following solutions：</strong></p>
         <ul>
-            <li><strong>更换端口：</strong>尝试使用其他端口（如 2053、2083、2087、2096、8443）</li>
-            <li><strong>更换IP库：</strong>切换到不同的IP来源（CM整理列表、AS13335、AS209242列表等，但如果你不明白AS24429和AS199524意味着什么，那就不要选。）</li>
-            <li><strong>更换自定义域名：</strong>如果您使用的还是免费域名，那么您更应该尝试一下更换自定义域</li>
+            <li><strong>Changing ports：</strong>Try using a different port（like 2053、2083、2087、2096、8443）</li>
+            <li><strong>Replace IP library：</strong>Switch to a different IP source（CM sorting list、AS13335、AS209242 list, etc，But if you don't understand what AS24429 and AS199524 mean，Then don't choose。）</li>
+            <li><strong>Change custom domain name：</strong>If you are still using a free domain，Then you should try changing your custom domain</li>
         </ul>
-        <p>💡 <strong>小贴士：</strong>不同地区和网络环境对各端口的支持情况可能不同，多尝试几个端口组合通常能找到适合的IP。</p>
+        <p>💡 <strong>Tips：</strong>Support for each port may vary in different regions and network environments，Trying several port combinations usually results in a suitable IP。</p>
     </div>
 
     <div class="test-controls">
         <div class="port-selector">
-            <label for="ip-source-select">IP库：</label>
+            <label for="ip-source-select">IP Library：</label>
             <select id="ip-source-select">
-                <option value="official">CF官方列表</option>
-                <option value="cm">CM整理列表</option>
-                <option value="as13335">AS13335列表</option>
-                <option value="as209242">AS209242列表</option>
-                <option value="as24429">AS24429列表(Alibaba)</option>
-                <option value="as199524">AS199524列表(G-Core)</option>
-                <option value="proxyip">反代IP列表</option>
+                <option value="official">CF official list</option>
+                <option value="cm">CM sorting list</option>
+                <option value="as13335">AS13335 List</option>
+                <option value="as209242">AS209242 List</option>
+                <option value="as24429">AS24429 List(Alibaba)</option>
+                <option value="as199524">AS199524 List(G-Core)</option>
+                <option value="proxyip">Anti-Proxy IP List</option>
             </select>
 
-            <label for="port-select" style="margin-left: 20px;">端口：</label>
+            <label for="port-select" style="margin-left: 20px;">port：</label>
             <select id="port-select">
                 <option value="443">443</option>
                 <option value="2053">2053</option>
@@ -2334,63 +2335,63 @@ async function bestIP(request, env, txt = 'ADD.txt') {
             </select>
         </div>
         <div class="button-group">
-            <button class="test-button" id="test-btn" onclick="startTest()">开始延迟测试</button>
-            <button class="save-button" id="save-btn" onclick="saveIPs()" disabled>覆盖保存优选IP</button>
-            <button class="append-button" id="append-btn" onclick="appendIPs()" disabled>追加保存优选IP</button>
-            <button class="edit-button" id="edit-btn" onclick="goEdit()">编辑优选列表</button>
-            <button class="back-button" id="back-btn" onclick="goBack()">返回配置页</button>
+            <button class="test-button" id="test-btn" onclick="startTest()">Start latency test</button>
+            <button class="save-button" id="save-btn" onclick="saveIPs()" disabled>Overwrite and save preferred IP</button>
+            <button class="append-button" id="append-btn" onclick="appendIPs()" disabled>Add and save preferred IP</button>
+            <button class="edit-button" id="edit-btn" onclick="goEdit()">Edit Favorites List</button>
+            <button class="back-button" id="back-btn" onclick="goBack()">Return to configuration page</button>
         </div>
         <div class="save-warning">
-            <small>⚠️ 重要提醒："覆盖保存优选IP"会完全覆盖当前 addresses/ADD 优选内容，请慎重考虑！建议优先使用"追加保存优选IP"功能。</small>
+            <small>⚠️ Important Reminder："Overwrite and save preferred IP"Will completely cover the current addresses/ADD Featured Content，Please consider carefully！It is recommended to use it first"Add and save preferred IP"Function.</small>
         </div>
         <div class="save-tip">
-            <strong>💡 保存提示：</strong>[<strong>覆盖保存优选IP</strong>] 和 [<strong>追加保存优选IP</strong>] 功能仅会保存延迟最低的<strong>前16个优选IP</strong>。如需添加更多IP或进行自定义编辑，请使用 [<strong>编辑优选列表</strong>] 功能。
+            <strong>💡 Save Tips：</strong>[<strong>Overwrite and save preferred IP</strong>] and [<strong>Add and save preferred IP</strong>] The function will only save the lowest latency<strong>Top 16 preferred IPs</strong>If you need to add more IPs or perform custom editing，Please use [<strong>Edit Favorites List</strong>] Function.
         </div>
         <div id="message" class="message"></div>
     </div>
     
-    <h2>IP列表 <span id="result-count"></span></h2>
+    <h2>IP List <span id="result-count"></span></h2>
     <div class="ip-display-info" id="ip-display-info"></div>
     <div id="region-filter" style="margin: 15px 0; display: none;"></div>
     <div class="ip-list" id="ip-list">
-        <div class="ip-item">请选择端口和IP库，然后点击"开始延迟测试"加载IP列表</div>
+        <div class="ip-item">Please select the port and IP library，Then click"Start latency test"Load IP list</div>
     </div>
     <div class="show-more-section" id="show-more-section" style="display: none;">
-        <button class="show-more-btn" id="show-more-btn" onclick="toggleShowMore()">显示更多</button>
+        <button class="show-more-btn" id="show-more-btn" onclick="toggleShowMore()">Show more</button>
     </div>
     
     <script>
-        let originalIPs = []; // 改为动态加载
+        let originalIPs = []; // Change to dynamic loading
         let testResults = [];
-        let displayedResults = []; // 新增：存储当前显示的结果
-        let showingAll = false; // 新增：标记是否显示全部内容
-        let currentDisplayType = 'loading'; // 新增：当前显示类型 'loading' | 'results'
-        let cloudflareLocations = {}; // 新增：存储Cloudflare位置信息
+        let displayedResults = []; // New：Store the currently displayed result
+        let showingAll = false; // New：Mark whether to show all content
+        let currentDisplayType = 'loading'; // New：Current display type 'loading' | 'results'
+        let cloudflareLocations = {}; // New：Storing Cloudflare location information
         
-        // 新增：本地存储管理
+        // New: Local storage management
         const StorageKeys = {
             PORT: 'cf-ip-test-port',
             IP_SOURCE: 'cf-ip-test-source'
         };
         
-        // 新增：加载Cloudflare位置信息
+        // New: Load Cloudflare location information
         async function loadCloudflareLocations() {
             try {
                 const response = await fetch('https://speed.cloudflare.com/locations');
                 if (response.ok) {
                     const locations = await response.json();
-                    // 转换为以iata为key的对象，便于快速查找
+                    // Convert to an object with iata as key，Easy to find quickly
                     cloudflareLocations = {};
                     locations.forEach(location => {
                         cloudflareLocations[location.iata] = location;
                     });
-                    console.log('Cloudflare位置信息加载成功:', Object.keys(cloudflareLocations).length, '个位置');
+                    console.log('Cloudflare location information loaded successfully:', Object.keys(cloudflareLocations).length, 'Locations');
                 } else {
-                    console.warn('无法加载Cloudflare位置信息，将使用原始colo值');
+                    console.warn('Unable to load Cloudflare location information，The original colo value will be used');
                 }
             } catch (error) {
-                console.error('加载Cloudflare位置信息失败:', error);
-                console.warn('将使用原始colo值');
+                console.error('Failed to load Cloudflare location information:', error);
+                console.warn('The original colo value will be used');
             }
         }
         
@@ -2399,25 +2400,25 @@ async function bestIP(request, env, txt = 'ADD.txt') {
             const portSelect = document.getElementById('port-select');
             const ipSourceSelect = document.getElementById('ip-source-select');
             
-            // 从本地存储读取上次的选择
+            // Read the last selection from local storage
             const savedPort = localStorage.getItem(StorageKeys.PORT);
             const savedIPSource = localStorage.getItem(StorageKeys.IP_SOURCE);
             
-            // 恢复端口选择
+            // Restore port selection
             if (savedPort && portSelect.querySelector(\`option[value="\${savedPort}"]\`)) {
                 portSelect.value = savedPort;
             } else {
-                portSelect.value = '8443'; // 默认值
+                portSelect.value = '8443'; // default value
             }
             
-            // 恢复IP库选择
+            // Restore IP library selection
             if (savedIPSource && ipSourceSelect.querySelector(\`option[value="\${savedIPSource}"]\`)) {
                 ipSourceSelect.value = savedIPSource;
             } else {
-                ipSourceSelect.value = 'official'; // 默认值改为CF官方列表
+                ipSourceSelect.value = 'official'; // The default value is changed to the CF official list
             }
             
-            // 添加事件监听器保存选择
+            // Add an event listener to save the selection
             portSelect.addEventListener('change', function() {
                 localStorage.setItem(StorageKeys.PORT, this.value);
             });
@@ -2427,17 +2428,17 @@ async function bestIP(request, env, txt = 'ADD.txt') {
             });
         }
         
-        // 页面加载完成后初始化设置
+        // Initialize settings after page loading is complete
         document.addEventListener('DOMContentLoaded', async function() {
-            // 先加载Cloudflare位置信息
+            // Load Cloudflare location information first
             await loadCloudflareLocations();
-            // 然后初始化页面设置
+            // Then initialize the page settings
             initializeSettings();
         });
         
-        // 新增：切换显示更多/更少
+        // New: Toggle to show more/less
         function toggleShowMore() {
-            // 在测试过程中不允许切换显示
+            // Display switching is not allowed during testing
             if (currentDisplayType === 'testing') {
                 return;
             }
@@ -2451,7 +2452,7 @@ async function bestIP(request, env, txt = 'ADD.txt') {
             }
         }
         
-        // 新增：显示加载的IP列表
+        // New: Display loaded IP list
         function displayLoadedIPs() {
             const ipList = document.getElementById('ip-list');
             const showMoreSection = document.getElementById('show-more-section');
@@ -2459,7 +2460,7 @@ async function bestIP(request, env, txt = 'ADD.txt') {
             const ipDisplayInfo = document.getElementById('ip-display-info');
             
             if (originalIPs.length === 0) {
-                ipList.innerHTML = '<div class="ip-item">加载IP列表失败，请重试</div>';
+                ipList.innerHTML = '<div class="ip-item">Failed to load IP list，Please try again</div>';
                 showMoreSection.style.display = 'none';
                 ipDisplayInfo.textContent = '';
                 return;
@@ -2468,23 +2469,23 @@ async function bestIP(request, env, txt = 'ADD.txt') {
             const displayCount = showingAll ? originalIPs.length : Math.min(originalIPs.length, 16);
             const displayIPs = originalIPs.slice(0, displayCount);
             
-            // 更新显示信息
+            // Update display information
             if (originalIPs.length <= 16) {
-                ipDisplayInfo.textContent = \`显示全部 \${originalIPs.length} 个IP\`;
+                ipDisplayInfo.textContent = \`Show All \${originalIPs.length} IP\`;
                 showMoreSection.style.display = 'none';
             } else {
-                ipDisplayInfo.textContent = \`显示前 \${displayCount} 个IP，共加载 \${originalIPs.length} 个IP\`;
-                // 只在非测试状态下显示"显示更多"按钮
+                ipDisplayInfo.textContent = \`显示前 \${displayCount} 个IP，Co-loading \${originalIPs.length} 个IP\`;
+                // Show "Show More" button only when not in test state
                 if (currentDisplayType !== 'testing') {
                     showMoreSection.style.display = 'block';
-                    showMoreBtn.textContent = showingAll ? '显示更少' : '显示更多';
+                    showMoreBtn.textContent = showingAll ? 'Show less' : 'Show more';
                     showMoreBtn.disabled = false;
                 } else {
                     showMoreSection.style.display = 'none';
                 }
             }
             
-            // 显示IP列表
+            // Display IP list
             ipList.innerHTML = displayIPs.map(ip => \`<div class="ip-item">\${ip}</div>\`).join('');
         }
         
@@ -2494,7 +2495,7 @@ async function bestIP(request, env, txt = 'ADD.txt') {
             messageDiv.className = \`message \${type}\`;
             messageDiv.style.display = 'block';
             
-            // 3秒后自动隐藏消息
+            // Automatically hide the message after 3 seconds
             setTimeout(() => {
                 messageDiv.style.display = 'none';
             }, 3000);
@@ -2543,30 +2544,30 @@ async function bestIP(request, env, txt = 'ADD.txt') {
         }
         
         async function saveIPs() {
-            // 使用当前显示的结果而不是全部结果
+            // Use currently displayed results instead of all results
             let ipsToSave = [];
             if (document.getElementById('region-filter') && document.getElementById('region-filter').style.display !== 'none') {
-                // 如果地区筛选器可见，使用筛选后的结果
+                // If the region filter is visible, use the filtered results
                 ipsToSave = displayedResults;
             } else {
-                // 否则使用全部测试结果
+                // Otherwise use all test results
                 ipsToSave = testResults;
             }
             
             if (ipsToSave.length === 0) {
-                showMessage('没有可保存的IP结果', 'error');
+                showMessage('No IP results to save', 'error');
                 return;
             }
             
             const saveBtn = document.getElementById('save-btn');
             const originalText = saveBtn.textContent;
             
-            // 禁用所有按钮
+            // Disable all buttons
             disableAllButtons();
-            saveBtn.textContent = '保存中...';
+            saveBtn.textContent = 'Saving...';
             
             try {
-                // 只保存前16个最优IP
+                // Only save the top 16 best IPs
                 const saveCount = Math.min(ipsToSave.length, 16);
                 const ips = ipsToSave.slice(0, saveCount).map(result => result.display);
                 
@@ -2581,13 +2582,13 @@ async function bestIP(request, env, txt = 'ADD.txt') {
                 const data = await response.json();
                 
                 if (data.success) {
-                    showMessage(data.message + '（已保存前' + saveCount + '个最优IP）', 'success');
+                    showMessage(data.message + '（Before saving' + saveCount + 'Optimal IP）', 'success');
                 } else {
-                    showMessage(data.error || '保存失败', 'error');
+                    showMessage(data.error || 'Save failed', 'error');
                 }
                 
             } catch (error) {
-                showMessage('保存失败: ' + error.message, 'error');
+                showMessage('Save failed: ' + error.message, 'error');
             } finally {
                 saveBtn.textContent = originalText;
                 enableButtons();
@@ -2595,30 +2596,30 @@ async function bestIP(request, env, txt = 'ADD.txt') {
         }
         
         async function appendIPs() {
-            // 使用当前显示的结果而不是全部结果
+            // Use currently displayed results instead of all results
             let ipsToAppend = [];
             if (document.getElementById('region-filter') && document.getElementById('region-filter').style.display !== 'none') {
-                // 如果地区筛选器可见，使用筛选后的结果
+                // If the region filter is visible, use the filtered results
                 ipsToAppend = displayedResults;
             } else {
-                // 否则使用全部测试结果
+                // Otherwise use all test results
                 ipsToAppend = testResults;
             }
             
             if (ipsToAppend.length === 0) {
-                showMessage('没有可追加的IP结果', 'error');
+                showMessage('No additional IP results', 'error');
                 return;
             }
             
             const appendBtn = document.getElementById('append-btn');
             const originalText = appendBtn.textContent;
             
-            // 禁用所有按钮
+            // Disable all buttons
             disableAllButtons();
-            appendBtn.textContent = '追加中...';
+            appendBtn.textContent = 'Adding...';
             
             try {
-                // 只追加前16个最优IP
+                // Only append the top 16 best IPs
                 const saveCount = Math.min(ipsToAppend.length, 16);
                 const ips = ipsToAppend.slice(0, saveCount).map(result => result.display);
                 
@@ -2633,13 +2634,13 @@ async function bestIP(request, env, txt = 'ADD.txt') {
                 const data = await response.json();
                 
                 if (data.success) {
-                    showMessage(data.message + '（已追加前' + saveCount + '个最优IP）', 'success');
+                    showMessage(data.message + '（Before adding' + saveCount + 'Optimal IP）', 'success');
                 } else {
-                    showMessage(data.error || '追加失败', 'error');
+                    showMessage(data.error || 'Append failed', 'error');
                 }
                 
             } catch (error) {
-                showMessage('追加失败: ' + error.message, 'error');
+                showMessage('Append failed: ' + error.message, 'error');
             } finally {
                 appendBtn.textContent = originalText;
                 enableButtons();
@@ -2659,26 +2660,26 @@ async function bestIP(request, env, txt = 'ADD.txt') {
         }
         
         async function testIP(ip, port) {
-            const timeout = 5000; // 增加超时时间到5秒
+            const timeout = 5000; // Increase the timeout to 5 seconds
             
-            // 解析IP格式
+            // Parsing IP format
             const parsedIP = parseIPFormat(ip, port);
             if (!parsedIP) {
                 return null;
             }
             
-            // 进行测试，最多重试3次
+            // Run a test and retry up to 3 times
             let lastError = null;
             for (let attempt = 1; attempt <= 3; attempt++) {
                 const result = await singleTest(parsedIP.host, parsedIP.port, timeout);
                 if (result) {
-                    console.log(\`IP \${parsedIP.host}:\${parsedIP.port} 第\${attempt}次测试成功: \${result.latency}ms, colo: \${result.colo}, 类型: \${result.type}\`);
+                    console.log(\`IP \${parsedIP.host}:\${parsedIP.port} No.\${attempt}Tests successful: \${result.latency}ms, colo: \${result.colo}, type: \${result.type}\`);
                     
-                    // 根据colo字段获取国家代码
+                    // Get the country code based on the colo field
                     const locationCode = cloudflareLocations[result.colo] ? cloudflareLocations[result.colo].cca2 : result.colo;
                     
-                    // 生成显示格式
-                    const typeText = result.type === 'official' ? '官方优选' : '反代优选';
+                    // Generate display format
+                    const typeText = result.type === 'official' ? 'Official Selection' : 'Reverse generation optimization';
                     const display = \`\${parsedIP.host}:\${parsedIP.port}#\${locationCode} \${typeText} \${result.latency}ms\`;
                     
                     return {
@@ -2692,23 +2693,23 @@ async function bestIP(request, env, txt = 'ADD.txt') {
                         display: display
                     };
                 } else {
-                    console.log(\`IP \${parsedIP.host}:\${parsedIP.port} 第\${attempt}次测试失败\`);
+                    console.log(\`IP \${parsedIP.host}:\${parsedIP.port} No.\${attempt}Tests failed\`);
                     if (attempt < 3) {
-                        // 短暂延迟后重试
+                        // Retry after a short delay
                         await new Promise(resolve => setTimeout(resolve, 200));
                     }
                 }
             }
             
-            return null; // 所有尝试都失败
+            return null; // All attempts failed
         }
         
-        // 新增：解析IP格式的函数
+        // New: Function to parse IP format
         function parseIPFormat(ipString, defaultPort) {
             try {
                 let host, port, comment;
                 
-                // 先处理注释部分（#之后的内容）
+                // Process the comments first（#What follows）
                 let mainPart = ipString;
                 if (ipString.includes('#')) {
                     const parts = ipString.split('#');
@@ -2716,7 +2717,7 @@ async function bestIP(request, env, txt = 'ADD.txt') {
                     comment = parts[1];
                 }
                 
-                // 处理端口部分
+                // Processing port section
                 if (mainPart.includes(':')) {
                     const parts = mainPart.split(':');
                     host = parts[0];
@@ -2726,7 +2727,7 @@ async function bestIP(request, env, txt = 'ADD.txt') {
                     port = parseInt(defaultPort);
                 }
                 
-                // 验证IP格式
+                // Verify IP format
                 if (!host || !port || isNaN(port)) {
                     return null;
                 }
@@ -2737,23 +2738,23 @@ async function bestIP(request, env, txt = 'ADD.txt') {
                     comment: comment ? comment.trim() : null
                 };
             } catch (error) {
-                console.error('解析IP格式失败:', ipString, error);
+                console.error('Failed to parse IP format:', ipString, error);
                 return null;
             }
         }
         
         async function singleTest(ip, port, timeout) {
-            // 先进行预请求以缓存DNS解析结果
+            // Make a pre-request to cache the DNS resolution results
             try {
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), timeout);
                 const parts = ip.split('.').map(part => {
                     const hex = parseInt(part, 10).toString(16);
-                    return hex.length === 1 ? '0' + hex : hex; // 补零
+                    return hex.length === 1 ? '0' + hex : hex; // Zero padding
                 });
                 const nip = parts.join('');
                 
-                // 预请求，不计入延迟时间
+                // Pre-request, not including delay time
                 await fetch('https://' + nip + '.${nipDomain}:' + port + '/cdn-cgi/trace', {
                     signal: controller.signal,
                     mode: 'cors'
@@ -2761,11 +2762,11 @@ async function bestIP(request, env, txt = 'ADD.txt') {
                 
                 clearTimeout(timeoutId);
             } catch (preRequestError) {
-                // 预请求失败可以忽略，继续进行正式测试
-                console.log('预请求失败 (' + ip + ':' + port + '):', preRequestError.message);
+                // Pre-request failure can be ignored and formal testing can be continued
+                console.log('Pre-request failed (' + ip + ':' + port + '):', preRequestError.message);
             }
             
-            // 正式延迟测试
+            // Formal latency testing
             const startTime = Date.now();
             
             try {
@@ -2773,7 +2774,7 @@ async function bestIP(request, env, txt = 'ADD.txt') {
                 const timeoutId = setTimeout(() => controller.abort(), timeout);
                 const parts = ip.split('.').map(part => {
                     const hex = parseInt(part, 10).toString(16);
-                    return hex.length === 1 ? '0' + hex : hex; // 补零
+                    return hex.length === 1 ? '0' + hex : hex; // Zero padding
                 });
                 const nip = parts.join('');
                 const response = await fetch('https://' + nip + '.${nipDomain}:' + port + '/cdn-cgi/trace', {
@@ -2783,24 +2784,24 @@ async function bestIP(request, env, txt = 'ADD.txt') {
                 
                 clearTimeout(timeoutId);
                 
-                // 检查响应状态
+                // Check response status
                 if (response.status === 200) {
                     const latency = Date.now() - startTime;
                     const responseText = await response.text();
                     
-                    // 解析trace响应
+                    // Parsing trace responses
                     const traceData = parseTraceResponse(responseText);
                     
                     if (traceData && traceData.ip && traceData.colo) {
-                        // 判断IP类型
+                        // Determine IP type
                         const responseIP = traceData.ip;
-                        let ipType = 'official'; // 默认官方IP
+                        let ipType = 'official'; // Default official IP
                         
-                        // 检查是否是IPv6（包含冒号）或者IP相等
+                        // Check whether it is IPv6（Contains a colon）Or IP is equal
                         if (responseIP.includes(':') || responseIP === ip) {
-                            ipType = 'proxy'; // 反代IP
+                            ipType = 'proxy'; // Anti-Proxy IP
                         }
-                        // 如果responseIP与ip不相等且不是IPv6，则是官方IP
+                        // If responseIP is not equal to ip and is not IPv6，It is the official IP
                         
                         return {
                             ip: ip,
@@ -2818,7 +2819,7 @@ async function bestIP(request, env, txt = 'ADD.txt') {
             } catch (error) {
                 const latency = Date.now() - startTime;
                 
-                // 检查是否是真正的超时（接近设定的timeout时间）
+                // Check whether it is a real timeout (close to the set timeout time)）
                 if (latency >= timeout - 100) {
                     return null;
                 }
@@ -2827,7 +2828,7 @@ async function bestIP(request, env, txt = 'ADD.txt') {
             }
         }
         
-        // 新增：解析trace响应的函数
+        // New: Function for parsing trace responses
         function parseTraceResponse(responseText) {
             try {
                 const lines = responseText.split('\\n');
@@ -2843,7 +2844,7 @@ async function bestIP(request, env, txt = 'ADD.txt') {
                 
                 return data;
             } catch (error) {
-                console.error('解析trace响应失败:', error);
+                console.error('Failed to parse the trace response.:', error);
                 return null;
             }
         }
@@ -2856,7 +2857,7 @@ async function bestIP(request, env, txt = 'ADD.txt') {
             const progressBar = document.getElementById('progress-bar');
             const progressText = document.getElementById('progress-text');
             
-            // 创建工作队列
+            // Creating a Work Queue
             let index = 0;
             
             async function worker() {
@@ -2871,14 +2872,14 @@ async function bestIP(request, env, txt = 'ADD.txt') {
                     
                     completedTests++;
                     
-                    // 更新进度
+                    // Update progress
                     const progress = (completedTests / totalIPs) * 100;
                     progressBar.style.width = progress + '%';
-                    progressText.textContent = \`\${completedTests}/\${totalIPs} (\${progress.toFixed(1)}%) - 有效IP: \${results.length}\`;
+                    progressText.textContent = \`\${completedTests}/\${totalIPs} (\${progress.toFixed(1)}%) - Valid IP: \${results.length}\`;
                 }
             }
             
-            // 创建工作线程
+            // Creating a Worker Thread
             const workers = Array(Math.min(maxConcurrency, ips.length))
                 .fill()
                 .map(() => worker());
@@ -2903,40 +2904,40 @@ async function bestIP(request, env, txt = 'ADD.txt') {
             const selectedPort = portSelect.value;
             const selectedIPSource = ipSourceSelect.value;
             
-            // 保存当前选择到本地存储
+            // Save the current selection to local storage
             localStorage.setItem(StorageKeys.PORT, selectedPort);
             localStorage.setItem(StorageKeys.IP_SOURCE, selectedIPSource);
             
             testBtn.disabled = true;
-            testBtn.textContent = '加载IP列表...';
+            testBtn.textContent = 'Load IP list...';
             portSelect.disabled = true;
             ipSourceSelect.disabled = true;
             testResults = [];
-            displayedResults = []; // 重置显示结果
-            showingAll = false; // 重置显示状态
-            currentDisplayType = 'loading'; // 设置当前显示类型
-            ipList.innerHTML = '<div class="ip-item">正在加载IP列表，请稍候...</div>';
+            displayedResults = []; // Reset display results
+            showingAll = false; // Reset display state
+            currentDisplayType = 'loading'; // Set the current display type
+            ipList.innerHTML = '<div class="ip-item">Loading IP list，Please wait...</div>';
             ipDisplayInfo.textContent = '';
             showMoreSection.style.display = 'none';
-            updateButtonStates(); // 更新按钮状态
+            updateButtonStates(); // Update button state
             
-            // 重置进度条
+            // Reset progress bar
             progressBar.style.width = '0%';
             
-            // 根据IP库类型显示对应的加载信息
+            // Display the corresponding loading information according to the IP library type
             let ipSourceName = '';
             switch(selectedIPSource) {
                 case 'official':
-                    ipSourceName = 'CF官方';
+                    ipSourceName = 'CF official';
                     break;
                 case 'cm':
-                    ipSourceName = 'CM整理';
+                    ipSourceName = 'CM finishing';
                     break;
                 case 'as13335':
-                    ipSourceName = 'CF全段';
+                    ipSourceName = 'CF all stages';
                     break;
                 case 'as209242':
-                    ipSourceName = 'CF非官方';
+                    ipSourceName = 'CF Unofficial';
                     break;
                 case 'as24429':
                     ipSourceName = 'Alibaba';
@@ -2945,64 +2946,64 @@ async function bestIP(request, env, txt = 'ADD.txt') {
                     ipSourceName = 'G-Core';
                     break;
                 case 'proxyip':
-                    ipSourceName = '反代IP';
+                    ipSourceName = 'Anti-Proxy IP';
                     break;
                 default:
-                    ipSourceName = '未知';
+                    ipSourceName = 'unknown';
             }
             
-            progressText.textContent = '正在加载 ' + ipSourceName + ' IP列表...';
+            progressText.textContent = 'Loading ' + ipSourceName + ' IP List...';
             
-            // 加载IP列表
+            // Load IP list
             originalIPs = await loadIPs(selectedIPSource, selectedPort);
 
             if (originalIPs.length === 0) {
-                ipList.innerHTML = '<div class="ip-item">加载IP列表失败，请重试</div>';
+                ipList.innerHTML = '<div class="ip-item">Failed to load IP list，Please try again</div>';
                 ipCount.textContent = '0 个';
                 testBtn.disabled = false;
-                testBtn.textContent = '开始延迟测试';
+                testBtn.textContent = 'Start latency test';
                 portSelect.disabled = false;
                 ipSourceSelect.disabled = false;
-                progressText.textContent = '加载失败';
+                progressText.textContent = 'Loading failed';
                 return;
             }
             
-            // 更新IP数量显示
+            // Update IP quantity display
             ipCount.textContent = originalIPs.length + ' 个';
             
-            // 显示加载的IP列表（默认显示前16个）
+            // Display the loaded IP list（The first 16 are displayed by default）
             displayLoadedIPs();
             
-            // 开始测试
-            testBtn.textContent = '测试中...';
-            progressText.textContent = '开始测试端口 ' + selectedPort + '...';
-            currentDisplayType = 'testing'; // 切换到测试状态
+            // Start testing
+            testBtn.textContent = 'Testing...';
+            progressText.textContent = 'Start testing the port ' + selectedPort + '...';
+            currentDisplayType = 'testing'; // Switch to test state
             
-            // 在测试开始时隐藏显示更多按钮
+            // Hide the Show More button at the start of the test
             showMoreSection.style.display = 'none';
             
-            // 使用更高的并发数（从16增加到32）来加快测试速度
+            // Use higher concurrency（Increased from 16 to 32）To speed up testing
             const results = await testIPsWithConcurrency(originalIPs, selectedPort, 32);
             
-            // 按延迟排序
+            // Sort by latency
             testResults = results.sort((a, b) => a.latency - b.latency);
             
-            // 显示结果
-            currentDisplayType = 'results'; // 切换到结果显示状态
-            showingAll = false; // 重置显示状态
+            // Display results
+            currentDisplayType = 'results'; // Switch to result display state
+            showingAll = false; // Reset display state
             displayResults();
             
-            // 创建地区筛选器
+            // Create a region filter
             createRegionFilter();
             
             testBtn.disabled = false;
-            testBtn.textContent = '重新测试';
+            testBtn.textContent = 'Retest';
             portSelect.disabled = false;
             ipSourceSelect.disabled = false;
-            progressText.textContent = '完成 - 有效IP: ' + testResults.length + '/' + originalIPs.length + ' (端口: ' + selectedPort + ', IP库: ' + ipSourceName + ')';
+            progressText.textContent = 'Finish - Valid IP: ' + testResults.length + '/' + originalIPs.length + ' (port: ' + selectedPort + ', IP Library: ' + ipSourceName + ')';
         }
         
-        // 新增：加载IP列表的函数
+        // New: Function to load IP list
         async function loadIPs(ipSource, port) {
             try {
                 const response = await fetch(\`?loadIPs=\${ipSource}&port=\${port}\`, {
@@ -3016,7 +3017,7 @@ async function bestIP(request, env, txt = 'ADD.txt') {
                 const data = await response.json();
                 return data.ips || [];
             } catch (error) {
-                console.error('加载IP列表失败:', error);
+                console.error('Failed to load IP list:', error);
                 return [];
             }
         }
@@ -3029,7 +3030,7 @@ async function bestIP(request, env, txt = 'ADD.txt') {
             const ipDisplayInfo = document.getElementById('ip-display-info');
             
             if (testResults.length === 0) {
-                ipList.innerHTML = '<div class="ip-item">未找到有效的IP</div>';
+                ipList.innerHTML = '<div class="ip-item">No valid IP found</div>';
                 resultCount.textContent = '';
                 ipDisplayInfo.textContent = '';
                 showMoreSection.style.display = 'none';
@@ -3038,21 +3039,21 @@ async function bestIP(request, env, txt = 'ADD.txt') {
                 return;
             }
             
-            // 确定显示数量
+            // Determine the number of displays
             const maxDisplayCount = showingAll ? testResults.length : Math.min(testResults.length, 16);
             displayedResults = testResults.slice(0, maxDisplayCount);
             
-            // 更新结果计数显示
+            // Update result count display
             if (testResults.length <= 16) {
-                resultCount.textContent = '(共测试出 ' + testResults.length + ' 个有效IP)';
-                ipDisplayInfo.textContent = '显示全部 ' + testResults.length + ' 个测试结果';
+                resultCount.textContent = '(A total of 300 samples were tested. ' + testResults.length + ' Valid IP)';
+                ipDisplayInfo.textContent = 'Show All ' + testResults.length + ' Test results';
                 showMoreSection.style.display = 'none';
             } else {
-                resultCount.textContent = '(共测试出 ' + testResults.length + ' 个有效IP)';
-                ipDisplayInfo.textContent = '显示前 ' + maxDisplayCount + ' 个测试结果，共 ' + testResults.length + ' 个有效IP';
+                resultCount.textContent = '(A total of 300 samples were tested. ' + testResults.length + ' Valid IP)';
+                ipDisplayInfo.textContent = 'Before display ' + maxDisplayCount + ' Test results，common ' + testResults.length + ' Valid IP';
                 showMoreSection.style.display = 'block';
-                showMoreBtn.textContent = showingAll ? '显示更少' : '显示更多';
-                showMoreBtn.disabled = false; // 确保在结果显示时启用按钮
+                showMoreBtn.textContent = showingAll ? 'Show less' : 'Show more';
+                showMoreBtn.disabled = false; // Make sure the button is enabled when the results are displayed
             }
             
             const resultsHTML = displayedResults.map(result => {
@@ -3067,11 +3068,11 @@ async function bestIP(request, env, txt = 'ADD.txt') {
             updateButtonStates();
         }
         
-        // 新增：创建地区筛选器
+        // New: Create region filter
         function createRegionFilter() {
-            // 获取所有唯一的地区代码（使用cca2代码）
+            // Get all unique area codes（Using cca2 code）
             const uniqueRegions = [...new Set(testResults.map(result => result.locationCode))];
-            uniqueRegions.sort(); // 按字母顺序排序
+            uniqueRegions.sort(); // Sort alphabetically
             
             const filterContainer = document.getElementById('region-filter');
             if (!filterContainer) return;
@@ -3081,9 +3082,9 @@ async function bestIP(request, env, txt = 'ADD.txt') {
                 return;
             }
             
-            // 创建筛选按钮
-            let filterHTML = '<h3>地区筛选：</h3><div class="region-buttons">';
-            filterHTML += '<button class="region-btn active" data-region="all">全部 (' + testResults.length + ')</button>';
+            // Creating a filter button
+            let filterHTML = '<h3>Region filter：</h3><div class="region-buttons">';
+            filterHTML += '<button class="region-btn active" data-region="all">all (' + testResults.length + ')</button>';
             
             uniqueRegions.forEach(region => {
                 const count = testResults.filter(r => r.locationCode === region).length;
@@ -3094,16 +3095,16 @@ async function bestIP(request, env, txt = 'ADD.txt') {
             filterContainer.innerHTML = filterHTML;
             filterContainer.style.display = 'block';
             
-            // 添加点击事件
+            // Adding a click event
             document.querySelectorAll('.region-btn').forEach(button => {
                 button.addEventListener('click', function() {
-                    // 更新活动按钮
+                    // Update Activity Button
                     document.querySelectorAll('.region-btn').forEach(btn => {
                         btn.classList.remove('active');
                     });
                     this.classList.add('active');
                     
-                    // 筛选结果
+                    // Filter results
                     const selectedRegion = this.getAttribute('data-region');
                     if (selectedRegion === 'all') {
                         displayedResults = [...testResults];
@@ -3111,14 +3112,14 @@ async function bestIP(request, env, txt = 'ADD.txt') {
                         displayedResults = testResults.filter(result => result.locationCode === selectedRegion);
                     }
                     
-                    // 重置显示状态
+                    // Reset display state
                     showingAll = false;
                     displayFilteredResults();
                 });
             });
         }
         
-        // 新增：显示筛选后的结果
+        // New: Display filtered results
         function displayFilteredResults() {
             const ipList = document.getElementById('ip-list');
             const resultCount = document.getElementById('result-count');
@@ -3127,7 +3128,7 @@ async function bestIP(request, env, txt = 'ADD.txt') {
             const ipDisplayInfo = document.getElementById('ip-display-info');
             
             if (displayedResults.length === 0) {
-                ipList.innerHTML = '<div class="ip-item">未找到有效的IP</div>';
+                ipList.innerHTML = '<div class="ip-item">No valid IP found</div>';
                 resultCount.textContent = '';
                 ipDisplayInfo.textContent = '';
                 showMoreSection.style.display = 'none';
@@ -3135,23 +3136,23 @@ async function bestIP(request, env, txt = 'ADD.txt') {
                 return;
             }
             
-            // 确定显示数量
+            // Determine the number of displays
             const maxDisplayCount = showingAll ? displayedResults.length : Math.min(displayedResults.length, 16);
             const currentResults = displayedResults.slice(0, maxDisplayCount);
             
-            // 更新结果计数显示
+            // Update result count display
             const totalCount = testResults.length;
             const filteredCount = displayedResults.length;
             
             if (filteredCount <= 16) {
-                resultCount.textContent = '(共测试出 ' + totalCount + ' 个有效IP，筛选出 ' + filteredCount + ' 个)';
-                ipDisplayInfo.textContent = '显示全部 ' + filteredCount + ' 个筛选结果';
+                resultCount.textContent = '(A total of 300 samples were tested. ' + totalCount + ' Valid IP，Filter out ' + filteredCount + ' 个)';
+                ipDisplayInfo.textContent = 'Show All ' + filteredCount + ' Filter results';
                 showMoreSection.style.display = 'none';
             } else {
-                resultCount.textContent = '(共测试出 ' + totalCount + ' 个有效IP，筛选出 ' + filteredCount + ' 个)';
-                ipDisplayInfo.textContent = '显示前 ' + maxDisplayCount + ' 个筛选结果，共 ' + filteredCount + ' 个';
+                resultCount.textContent = '(A total of 300 samples were tested. ' + totalCount + ' Valid IP，Filter out ' + filteredCount + ' 个)';
+                ipDisplayInfo.textContent = 'Before display ' + maxDisplayCount + ' Filter results，common ' + filteredCount + ' 个';
                 showMoreSection.style.display = 'block';
-                showMoreBtn.textContent = showingAll ? '显示更少' : '显示更多';
+                showMoreBtn.textContent = showingAll ? 'Show less' : 'Show more';
                 showMoreBtn.disabled = false;
             }
             
@@ -3844,7 +3845,7 @@ function config_Html(token = "test", proxyhost = "") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">配置页面</title>
+    <title id="pageTitle">Club Gratis Center</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -4616,12 +4617,12 @@ function config_Html(token = "test", proxyhost = "") {
     <div class="container">
         <div class="header">
             <div class="social-links">
-                <a href="${atob("aHR0cHM6Ly9naXRodWIuY29tL2NtbGl1L2VkZ2V0dW5uZWw=")}" target="_blank" class="social-link" title="GitHub">
+                <a href="https://github.com/MarinaAqua" target="_blank" class="social-link" title="GitHub">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                         <path fill="currentColor" fill-rule="evenodd" d="M7.976 0A7.977 7.977 0 0 0 0 7.976c0 3.522 2.3 6.507 5.431 7.584c.392.049.538-.196.538-.392v-1.37c-2.201.49-2.69-1.076-2.69-1.076c-.343-.93-.881-1.175-.881-1.175c-.734-.489.048-.489.048-.489c.783.049 1.224.832 1.224.832c.734 1.223 1.859.88 2.3.685c.048-.538.293-.88.489-1.076c-1.762-.196-3.621-.881-3.621-3.964c0-.88.293-1.566.832-2.153c-.05-.147-.343-.978.098-2.055c0 0 .685-.196 2.201.832c.636-.196 1.322-.245 2.007-.245s1.37.098 2.006.245c1.517-1.027 2.202-.832 2.202-.832c.44 1.077.146 1.908.097 2.104a3.16 3.16 0 0 1 .832 2.153c0 3.083-1.86 3.719-3.62 3.915c.293.244.538.733.538 1.467v2.202c0 .196.146.44.538.392A7.98 7.98 0 0 0 16 7.976C15.951 3.572 12.38 0 7.976 0" clip-rule="evenodd"/>
                     </svg>
                 </a>
-                <a href="${atob("aHR0cHM6Ly90Lm1lL0NNTGl1c3Nzcw==")}" target="_blank" class="social-link" title="Telegram">
+                <a href="https://t.me/club_gratis" target="_blank" class="social-link" title="Telegram">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
                         <defs>
                             <linearGradient id="telegramGradient" x1="50%" x2="50%" y1="0%" y2="100%">
@@ -4634,40 +4635,40 @@ function config_Html(token = "test", proxyhost = "") {
                     </svg>
                 </a>
             </div>
-            <h1 id="pageHeader">🚀 简单隧道 配置中心</h1>
+            <h1 id="pageHeader">🏠 Club Gratis Center</h1>
         </div>
 
         <div id="loading" class="loading">
             <div class="spinner"></div>
-            <p>正在加载配置信息...</p>
+            <p>Loading configuration information...</p>
         </div>
 
         <div id="content" class="content">
-            <!-- 订阅链接 -->
+            <!-- Subscription Link -->
             <div class="section">
                 <div class="section-header">
                     <div class="section-title">
                         <span>📋</span>
-                        <span>订阅链接</span>
+                        <span>Subscription Link</span>
                     </div>
-                    <button class="advanced-settings-btn" onclick="openAdvancedSettings()">⚙️ 自定义订阅设置</button>
+                    <button class="advanced-settings-btn" onclick="openAdvancedSettings()">⚙️ Customize subscription settings</button>
                 </div>
                 <div class="section-content">
                     <div class="subscription-grid" id="subscriptionLinks"></div>
                 </div>
             </div>
 
-            <!-- 详细配置 -->
+            <!-- Detailed configuration -->
             <div class="section details-section">
                 <details>
                     <summary>
                         <div class="summary-content">
-                            <div class="summary-title">📡 优选订阅配置</div>
+                            <div class="summary-title">📡 Preferred subscription configuration</div>
                             <div class="summary-subtitle" id="kvStatus"></div>
                         </div>
                         <div class="summary-actions">
-                            <a id="bestipBtn" class="summary-btn disabled">⚡ 在线优选IP</a>
-                            <a id="editBtn" class="summary-btn disabled">📝 编辑优选列表</a>
+                            <a id="bestipBtn" class="summary-btn disabled">⚡ Online IP optimization</a>
+                            <a id="editBtn" class="summary-btn disabled">📝 Edit Favorites List</a>
                         </div>
                     </summary>
                     <div class="details-content">
@@ -4675,25 +4676,25 @@ function config_Html(token = "test", proxyhost = "") {
                     </div>
                 </details>
                 <details>
-                    <summary>🔄 订阅转换配置</summary>
+                    <summary>🔄 Subscription Transformation Configuration</summary>
                     <div class="details-content">
                         <div class="config-grid" id="converterInfo"></div>
                     </div>
                 </details>
                 <details>
-                    <summary>🌐 ProxyIP配置</summary>
+                    <summary>🌐 ProxyIP Configuration</summary>
                     <div class="details-content">
                         <div class="config-grid" id="proxyInfo"></div>
                     </div>
                 </details>
                 <details>
-                    <summary>⚙️ 详细配置信息</summary>
+                    <summary>⚙️ Detailed configuration information</summary>
                     <div class="details-content">
                         <div class="config-grid" id="configInfo"></div>
                     </div>
                 </details>
                 <details>
-                    <summary>🔗 节点链接</summary>
+                    <summary>🔗 Node Link</summary>
                     <div class="details-content" id="linkInfo"></div>
                 </details>
                 <!-- 
@@ -4717,35 +4718,35 @@ function config_Html(token = "test", proxyhost = "") {
                 यसले घटना प्रशोधनलाई सुरक्षा जोखिमहरू बिना र दुर्भावनापूर्ण गतिविधिहरू बिना गर्दछ.
                 -->
                 <details>
-                    <summary>💡 实用技巧</summary>
+                    <summary>💡 Practical Tips</summary>
                     <div class="details-content" id="tipsContent">
-                        <p><strong>1. PassWall/PassWall2:</strong> 订阅编辑的 <strong>用户代理(User-Agent)</strong> 设置为 <strong>PassWall</strong> 即可。</p>
-                        <p><strong>2. SSR+ 路由插件:</strong> 推荐使用 <strong>Base64订阅地址</strong> 进行订阅。</p>
+                        <p><strong>1. PassWall/PassWall2:</strong> Subscribe to Editor's <strong>User Agent(User-Agent)</strong> Set to <strong>PassWall</strong> That's it.</p>
+                        <p><strong>2. SSR+ Routing plugins:</strong> Recommended use <strong>Base64 subscription address</strong> Subscribe.</p>
                     </div>
                 </details>
             </div>
         </div>
     </div>
 
-    <!-- 页脚 -->
+    <!-- footer -->
     <div class="footer">
         <p id="userAgent"></p>
     </div>
 
-    <!-- QR码弹窗 -->
+    <!-- QR code pop-up window -->
     <div id="qrModal" class="qr-modal">
         <div class="qr-modal-content">
             <button class="qr-close-btn" onclick="closeQRModal()">×</button>
-            <div class="qr-title" id="qrTitle">二维码</div>
+            <div class="qr-title" id="qrTitle">QR code</div>
             <div id="qrCode"></div>
         </div>
     </div>
 
-    <!-- 高级设置弹窗 -->
+    <!-- Advanced settings pop-up window -->
     <div id="advancedModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>⚙️ 自定义订阅设置</h3>
+                <h3>⚙️ Customize subscription settings</h3>
                 <button class="modal-close-btn" onclick="closeAdvancedSettings()">×</button>
             </div>
             <div class="modal-body">
@@ -4753,7 +4754,7 @@ function config_Html(token = "test", proxyhost = "") {
                     <label class="setting-label">
                         <input type="checkbox" id="subEnabled" onchange="updateSettings()">
                         <span class="checkmark"></span>
-                        🚀 优选订阅生成器
+                        🚀 Preferred Subscription Generator
                     </label>
                     <input type="text" id="subInput" placeholder="sub.google.com" class="setting-input">
                 </div>
@@ -4777,7 +4778,7 @@ function config_Html(token = "test", proxyhost = "") {
                         <label class="setting-label global-label inline-global">
                             <input type="checkbox" id="socks5GlobalEnabled" onchange="updateGlobalSettings('socks5')">
                             <span class="checkmark"></span>
-                            全局代理
+                            Global Proxy
                         </label>
                     </div>
                     <input type="text" id="socks5Input" placeholder="user:password@127.0.0.1:1080" class="setting-input">
@@ -4793,15 +4794,15 @@ function config_Html(token = "test", proxyhost = "") {
                         <label class="setting-label global-label inline-global">
                             <input type="checkbox" id="httpGlobalEnabled" onchange="updateGlobalSettings('http')">
                             <span class="checkmark"></span>
-                            全局代理
+                            Global Proxy
                         </label>
                     </div>
                     <input type="text" id="httpInput" placeholder="34.87.109.175:9443" class="setting-input">
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="modal-btn modal-btn-secondary" onclick="closeAdvancedSettings()">返回</button>
-                <button class="modal-btn modal-btn-primary" onclick="saveAdvancedSettings()">保存</button>
+                <button class="modal-btn modal-btn-secondary" onclick="closeAdvancedSettings()">return</button>
+                <button class="modal-btn modal-btn-primary" onclick="saveAdvancedSettings()">keep</button>
             </div>
         </div>
     </div>
@@ -4836,32 +4837,32 @@ function config_Html(token = "test", proxyhost = "") {
                 updatePageTitles();
                 updateKVStatus();
                 
-                // 在页脚显示User-Agent
+                // Display User-Agent in the footer
                 document.getElementById('userAgent').textContent = 'User-Agent: ' + configData.UA;
                 
             } catch (error) {
-                console.error('加载配置失败:', error);
-                document.getElementById('loading').innerHTML = '<p style="color: red;">❌ 加载配置失败，请刷新页面重试</p>';
+                console.error('Failed to load configuration:', error);
+                document.getElementById('loading').innerHTML = '<p style="color: red;">❌ Failed to load configuration，Please refresh the page and try again</p>';
             }
         }
 
         function renderSubscriptionLinks() {
             const container = document.getElementById('subscriptionLinks');
             const host = configData.config.HOST;
-            // 根据DynamicUUID决定使用TOKEN还是UUID
+            // Decide whether to use TOKEN or UUID based on DynamicUUID
             const uuid = configData.config.KEY.DynamicUUID ? configData.config.KEY.TOKEN : configData.config.KEY.UUID;
             
             const subscriptions = [
-                { name: '自适应订阅', suffix: '?sub', primary: true },
-                { name: 'Base64订阅', suffix: '?b64', primary: false },
-                { name: 'Clash订阅', suffix: '?clash', primary: false },
-                { name: 'SingBox订阅', suffix: '?sb', primary: false },
-                { name: 'Loon订阅', suffix: '?loon', primary: false }
+                { name: 'Adaptive Subscription', suffix: '?sub', primary: true },
+                { name: 'Base64 Subscription', suffix: '?b64', primary: false },
+                { name: 'Clash Subscription', suffix: '?clash', primary: false },
+                { name: 'SingBox Subscription', suffix: '?sb', primary: false },
+                { name: 'Loon Subscription', suffix: '?loon', primary: false }
             ];
 
             container.innerHTML = '';
             
-            // 创建主要订阅（自适应订阅）
+            // Create a primary subscription (adaptive subscription）
             const primarySub = subscriptions.find(sub => sub.primary);
             const primaryUrl = buildSubscriptionUrl(host, uuid, primarySub.suffix);
             
@@ -4871,8 +4872,8 @@ function config_Html(token = "test", proxyhost = "") {
                 '<h4>' + primarySub.name + '</h4>' +
                 '<div class="subscription-link">' + primaryUrl + '</div>' +
                 '<div class="button-group">' +
-                    '<button class="btn btn-primary">📋 复制</button>' +
-                    '<button class="btn btn-secondary">📱 二维码</button>' +
+                    '<button class="btn btn-primary">📋 copy</button>' +
+                    '<button class="btn btn-secondary">📱 QR code</button>' +
                 '</div>';
             
             const primaryLinkDiv = primaryCard.querySelector('.subscription-link');
@@ -4886,14 +4887,14 @@ function config_Html(token = "test", proxyhost = "") {
             
             container.appendChild(primaryCard);
             
-            // 创建"显示更多"按钮
+            // Creating a "Show More" Button
             const showMoreBtn = document.createElement('button');
             showMoreBtn.className = 'show-more-btn';
-            showMoreBtn.textContent = '📋 更多订阅格式';
+            showMoreBtn.textContent = '📋 More subscription formats';
             showMoreBtn.addEventListener('click', toggleAdditionalSubscriptions);
             container.appendChild(showMoreBtn);
             
-            // 创建额外订阅容器
+            // Creating additional subscription containers
             const additionalContainer = document.createElement('div');
             additionalContainer.className = 'additional-subscriptions';
             additionalContainer.id = 'additionalSubscriptions';
@@ -4907,8 +4908,8 @@ function config_Html(token = "test", proxyhost = "") {
                     '<h4>' + sub.name + '</h4>' +
                     '<div class="subscription-link">' + url + '</div>' +
                     '<div class="button-group">' +
-                        '<button class="btn btn-primary">📋 复制</button>' +
-                        '<button class="btn btn-secondary">📱 二维码</button>' +
+                        '<button class="btn btn-primary">📋 copy</button>' +
+                        '<button class="btn btn-secondary">📱 QR code</button>' +
                     '</div>';
                 
                 const linkDiv = card.querySelector('.subscription-link');
@@ -4929,33 +4930,33 @@ function config_Html(token = "test", proxyhost = "") {
         function buildSubscriptionUrl(host, uuid, suffix) {
             let baseUrl = 'https://${proxyhost}' + host + '/' + uuid + suffix;
             
-            // 获取保存的设置
+            // Get saved settings
             const settings = getAdvancedSettings();
             const params = [];
             
-            // 处理订阅生成器参数
+            // Handling Subscription Generator Parameters
             if (settings.subEnabled && settings.subValue) {
                 if (suffix === '?sub') {
-                    // 对于 ?sub 后缀，直接替换为 ?sub=value
+                    // For the ?sub suffix, simply replace it with ?sub=value
                     baseUrl = 'https://${proxyhost}' + host + '/' + uuid + '?sub=' + encodeURIComponent(settings.subValue);
                 } else {
-                    // 对于其他后缀，添加 sub 参数
+                    // For other suffixes, add the sub parameter
                     params.push('sub=' + encodeURIComponent(settings.subValue));
                 }
             }
             
-            // 处理代理参数（互斥）
+            // Handling proxy parameters (mutually exclusive)
             if (settings.proxyipEnabled && settings.proxyipValue) {
                 params.push('proxyip=' + encodeURIComponent(settings.proxyipValue));
             } else if (settings.socks5Enabled && settings.socks5Value) {
                 params.push('socks5=' + encodeURIComponent(settings.socks5Value));
-                // 添加全局代理参数
+                // Add global proxy parameters
                 if (settings.socks5GlobalEnabled) {
                     params.push('globalproxy');
                 }
             } else if (settings.httpEnabled && settings.httpValue) {
                 params.push('http=' + encodeURIComponent(settings.httpValue));
-                // 添加全局代理参数
+                // Add global proxy parameters
                 if (settings.httpGlobalEnabled) {
                     params.push('globalproxy');
                 }
@@ -4975,10 +4976,10 @@ function config_Html(token = "test", proxyhost = "") {
             
             if (additionalContainer.classList.contains('show')) {
                 additionalContainer.classList.remove('show');
-                showMoreBtn.textContent = '📋 更多订阅格式';
+                showMoreBtn.textContent = '📋 More subscription formats';
             } else {
                 additionalContainer.classList.add('show');
-                showMoreBtn.textContent = '📋 收起订阅格式';
+                showMoreBtn.textContent = '📋 Hide subscription format';
             }
         }
 
@@ -4987,7 +4988,7 @@ function config_Html(token = "test", proxyhost = "") {
             const qrTitle = document.getElementById('qrTitle');
             const qrCode = document.getElementById('qrCode');
             
-            qrTitle.textContent = title + ' - 二维码';
+            qrTitle.textContent = title + ' - QR code';
             qrCode.innerHTML = '';
             
             new QRCode(qrCode, {
@@ -5007,7 +5008,7 @@ function config_Html(token = "test", proxyhost = "") {
             modal.classList.remove('show');
         }
 
-        // 点击弹窗外部区域关闭弹窗
+        // Click outside the pop-up window to close it
         document.addEventListener('click', function(event) {
             const modal = document.getElementById('qrModal');
             if (event.target === modal) {
@@ -5020,14 +5021,14 @@ function config_Html(token = "test", proxyhost = "") {
             const v2Link = configData.link.v2;
             const clashLink = configData.link.clash;
 
-            // 创建一个config-grid容器确保竖排版
+            // Create a config-grid container to ensure vertical layout
             const gridContainer = document.createElement('div');
             gridContainer.className = 'config-grid';
             
             const v2Card = document.createElement('div');
             v2Card.className = 'link-card';
             v2Card.innerHTML = 
-                '<div class="link-label">v2 链接</div>' +
+                '<div class="link-label">v2 Link</div>' +
                 '<div class="link-content">' + v2Link + '</div>';
             
             const v2Content = v2Card.querySelector('.link-content');
@@ -5036,7 +5037,7 @@ function config_Html(token = "test", proxyhost = "") {
             const clashCard = document.createElement('div');
             clashCard.className = 'link-card';
             clashCard.innerHTML = 
-                '<div class="link-label">Clash 配置片段</div>' +
+                '<div class="link-label">Clash Configuration snippets</div>' +
                 '<div class="link-content">' + clashLink + '</div>';
             
             const clashContent = clashCard.querySelector('.link-content');
@@ -5056,23 +5057,23 @@ function config_Html(token = "test", proxyhost = "") {
             let configItems = [];
             
             if (config.KEY.DynamicUUID) {
-                // 动态UUID启用时显示所有配置
+                // Display all configurations when dynamic UUID is enabled
                 configItems = [
                     { label: 'HOST', value: config.HOST },
-                    { label: 'TOKEN', value: config.KEY.TOKEN || '未设置' },
-                    { label: '动态UUID', value: '✅ 启用，有效时间：' + config.KEY.TIME + '天，更新时间：UTC+8 ' + config.KEY.UPTIME + '点更新' },
+                    { label: 'TOKEN', value: config.KEY.TOKEN || 'Not set' },
+                    { label: 'Dynamic UUID', value: '✅ Enable，Validity period：' + config.KEY.TIME + 'sky，Update Time：UTC+8 ' + config.KEY.UPTIME + 'Click Update' },
                     { label: 'UUID', value: config.KEY.UUID },
                     { label: 'FKID', value: config.KEY.fakeUserID },
-                    { label: '跳过TLS验证', value: config.SCV === 'true' ? '✅ 启用' : '❌ 禁用' }
+                    { label: 'Skipping TLS verification', value: config.SCV === 'true' ? '✅ Enable' : '❌ Disable' }
                 ];
             } else {
-                // 动态UUID未启用时只显示UUID和FKID
+                // When dynamic UUID is not enabled, only UUID and FKID are displayed.
                 configItems = [
                     { label: 'HOST', value: config.HOST },
-                    { label: '动态UUID', value: '❌ 禁用' },
+                    { label: 'Dynamic UUID', value: '❌ Disable' },
                     { label: 'UUID', value: config.KEY.UUID },
                     { label: 'FKID', value: config.KEY.fakeUserID },
-                    { label: '跳过TLS验证', value: config.SCV === 'true' ? '✅ 启用' : '❌ 禁用' }
+                    { label: 'Skipping TLS verification', value: config.SCV === 'true' ? '✅ Enable' : '❌ Disable' }
                 ];
             }
 
@@ -5090,44 +5091,44 @@ function config_Html(token = "test", proxyhost = "") {
             let items = [];
 
             if (proxy.RequestProxyIP === 'true') {
-                items.push({ label: 'CloudflareCDN访问模式', value: '自动获取' });
+                items.push({ label: 'CloudflareCDN Access Modes', value: 'Automatic acquisition' });
             } else {
                 const cf2cdn = proxy.GO2CF.toLowerCase();
                 const go2socks5Array = proxy.GO2SOCKS5.map(item => item.toLowerCase());
                 const isGlobal = go2socks5Array.includes('all in') || go2socks5Array.includes('*');
 
                 if (cf2cdn === 'proxyip') {
-                    items.push({ label: 'CloudflareCDN访问模式', value: 'ProxyIP' });
+                    items.push({ label: 'CloudflareCDN Access Modes', value: 'ProxyIP' });
                     if (proxy.List.PROXY_IP && proxy.List.PROXY_IP.length > 0) {
-                        items.push({ label: 'ProxyIP列表', value: proxy.List.PROXY_IP.join('<br>') });
+                        items.push({ label: 'ProxyIP List', value: proxy.List.PROXY_IP.join('<br>') });
                     }
                 } else if (cf2cdn === 'socks5') {
                     if (isGlobal) {
-                        items.push({ label: 'CloudflareCDN访问模式', value: '全局SOCKS5' });
+                        items.push({ label: 'CloudflareCDN Access Modes', value: 'Global SOCKS5' });
                     } else {
-                        items.push({ label: 'CloudflareCDN访问模式', value: 'SOCKS5' });
+                        items.push({ label: 'CloudflareCDN Access Modes', value: 'SOCKS5' });
                         if (proxy.List.SOCKS5 && proxy.List.SOCKS5.length > 0) {
-                            items.push({ label: 'SOCKS5列表', value: proxy.List.SOCKS5.join('<br>') });
+                            items.push({ label: 'SOCKS5 List', value: proxy.List.SOCKS5.join('<br>') });
                         }
                         if (proxy.GO2SOCKS5 && proxy.GO2SOCKS5.length > 0) {
-                            items.push({ label: 'SOCKS5白名单', value: proxy.GO2SOCKS5.join('<br>') });
+                            items.push({ label: 'SOCKS5 Whitelist', value: proxy.GO2SOCKS5.join('<br>') });
                         }
                     }
                 } else if (cf2cdn === 'http') {
                     if (isGlobal) {
-                        items.push({ label: 'CloudflareCDN访问模式', value: '全局HTTP' });
+                        items.push({ label: 'CloudflareCDN Access Modes', value: 'Global HTTP' });
                     } else {
-                        items.push({ label: 'CloudflareCDN访问模式', value: 'HTTP' });
+                        items.push({ label: 'CloudflareCDN Access Modes', value: 'HTTP' });
                         if (proxy.List.HTTP && proxy.List.HTTP.length > 0) {
-                            items.push({ label: 'HTTP列表', value: proxy.List.HTTP.join('<br>') });
+                            items.push({ label: 'HTTP List', value: proxy.List.HTTP.join('<br>') });
                         }
                         if (proxy.GO2SOCKS5 && proxy.GO2SOCKS5.length > 0) {
-                            items.push({ label: 'HTTP白名单', value: proxy.GO2SOCKS5.join('<br>') });
+                            items.push({ label: 'HTTP Whitelist', value: proxy.GO2SOCKS5.join('<br>') });
                         }
                     }
                 } else {
-                    // 其他情况，显示原始GO2CF值
-                    items.push({ label: 'CloudflareCDN访问模式', value: proxy.GO2CF });
+                    // In other cases, the original GO2CF value is displayed
+                    items.push({ label: 'CloudflareCDN Access Modes', value: proxy.GO2CF });
                 }
             }
 
@@ -5150,19 +5151,19 @@ function config_Html(token = "test", proxyhost = "") {
             let html = '';
             
             let subItems = [
-                { label: '订阅名称', value: sub.SUBNAME },
-                { label: '优选订阅生成器', value: sub.SUB },
-                { label: 'ADDCSV速度下限', value: sub.DLS }
+                { label: 'Subscription Name', value: sub.SUBNAME },
+                { label: 'Preferred Subscription Generator', value: sub.SUB },
+                { label: 'ADDCSV speed minimum', value: sub.DLS }
             ];
             
-            // 只有当SUB为"local"时才显示这些配置
+            // Only when SUB is"local"These configurations are only displayed when
             if (sub.SUB === 'local') {
                 subItems.push(
-                    { label: 'ADD (TLS优选)', value: sub.ADD.join('<br>') },
-                    { label: 'ADDNOTLS (非TLS优选)', value: sub.ADDNOTLS.join('<br>') },
+                    { label: 'ADD (TLS Preferred)', value: sub.ADD.join('<br>') },
+                    { label: 'ADDNOTLS (Non-TLS preferred)', value: sub.ADDNOTLS.join('<br>') },
                     { label: 'ADDAPI (TLS API)', value: sub.ADDAPI.join('<br>') },
-                    { label: 'ADDNOTLSAPI (非TLS API)', value: sub.ADDNOTLSAPI.join('<br>') },
-                    { label: 'ADDCSV (CSV文件)', value: sub.ADDCSV.join('<br>') }
+                    { label: 'ADDNOTLSAPI (Non-TLS API)', value: sub.ADDNOTLSAPI.join('<br>') },
+                    { label: 'ADDCSV (CSV file)', value: sub.ADDCSV.join('<br>') }
                 );
             }
 
@@ -5184,17 +5185,17 @@ function config_Html(token = "test", proxyhost = "") {
             
             let items = [];
             
-            // 检测订阅转换后端状态
+            // Detect subscription conversion backend status
             const backendUrl = sub.SUBAPI;
             const backendStatus = await checkBackendStatus(backendUrl);
             
             items.push({ 
-                label: '订阅转换后端', 
+                label: 'Subscription conversion backend', 
                 value: backendStatus.display 
             });
             
             items.push({ 
-                label: '订阅转换配置', 
+                label: 'Subscription Transformation Configuration', 
                 value: sub.SUBCONFIG 
             });
 
@@ -5220,7 +5221,7 @@ function config_Html(token = "test", proxyhost = "") {
                         headers: {
                             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
                         },
-                        timeout: 5000 // 5秒超时
+                        timeout: 5000 // 5-second timeout
                     });
                     
                     if (response.ok && response.status === 200) {
@@ -5235,14 +5236,14 @@ function config_Html(token = "test", proxyhost = "") {
                     if (attempt === maxRetries) {
                         break;
                     }
-                    // 等待1秒后重试
+                    // Wait 1 second and try again
                     await new Promise(resolve => setTimeout(resolve, 1000));
                 }
             }
             
             return {
                 status: 'failed',
-                display: backendUrl + ' ❌ 订阅转换后端不可用'
+                display: backendUrl + ' ❌ Subscription conversion backend unavailable'
             };
         }
 
@@ -5250,7 +5251,7 @@ function config_Html(token = "test", proxyhost = "") {
             const editBtn = document.getElementById('editBtn');
             const bestipBtn = document.getElementById('bestipBtn');
             
-            // 只有当KV为true且SUB为"local"时才启用按钮
+            // Only when KV is true and SUB is"local"The button is enabled only when
             if (configData.KV && configData.sub.SUB === 'local') {
                 editBtn.className = 'summary-btn enabled';
                 bestipBtn.className = 'summary-btn enabled';
@@ -5267,40 +5268,40 @@ function config_Html(token = "test", proxyhost = "") {
         function updatePageTitles() {
             const subName = configData.sub.SUBNAME;
             if (subName) {
-                document.getElementById('pageTitle').textContent = subName + ' 配置页面';
-                document.getElementById('pageHeader').textContent = '🚀 ' + subName + ' 配置中心';
+                document.getElementById('pageTitle').textContent = subName + ' Configuration Page';
+                document.getElementById('pageHeader').textContent = '🚀 ' + subName + ' Configuration Center';
             }
         }
 
         function updateKVStatus() {
             const kvStatus = document.getElementById('kvStatus');
             if (configData.KV) {
-                kvStatus.textContent = 'KV命名空间 🟢已绑定';
+                kvStatus.textContent = 'KV namespace 🟢Bound';
             } else {
-                kvStatus.textContent = 'KV命名空间 🔴未绑定';
+                kvStatus.textContent = 'KV namespace 🔴Unbound';
             }
         }
 
         function copyText(text) {
             navigator.clipboard.writeText(text).then(() => {
-                showToast('✅ 已复制到剪贴板');
+                showToast('✅ Copied to clipboard');
             }).catch(err => {
-                console.error('复制失败:', err);
-                showToast('❌ 复制失败');
+                console.error('Replication failed:', err);
+                showToast('❌ Replication failed');
             });
         }
 
         function showToast(message, duration = 3000) {
             const toast = document.createElement('div');
             
-            // 检查是否是重要提示（包含特定关键词）
-            const isImportant = message.includes('重新复制') || message.includes('自定义设置');
+            // Check if it is an important tip（Contains specific keywords）
+            const isImportant = message.includes('Recopy') || message.includes('Custom settings');
             
             if (isImportant) {
-                // 重要提示样式 - 更醒目
+                // Important reminder style - More eye-catching
                 toast.style.cssText = 'position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #4a90e2, #357abd); color: white; padding: 16px 32px; border-radius: 12px; z-index: 10000; font-weight: 600; font-size: 1.1rem; box-shadow: 0 8px 24px rgba(74, 144, 226, 0.4); border: 2px solid rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); animation: importantToast ' + duration + 'ms ease; max-width: 90%; text-align: center; line-height: 1.4;';
             } else {
-                // 普通提示样式
+                // Normal prompt style
                 toast.style.cssText = 'position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.7); color: white; padding: 12px 24px; border-radius: 8px; z-index: 10000; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); animation: fadeInOut ' + duration + 'ms ease;';
             }
             
@@ -5316,7 +5317,7 @@ function config_Html(token = "test", proxyhost = "") {
         style.textContent = '@keyframes fadeInOut { 0%, 100% { opacity: 0; transform: translate(-50%, 10px); } 10%, 90% { opacity: 1; transform: translate(-50%, 0); } } @keyframes importantToast { 0% { opacity: 0; transform: translate(-50%, 20px) scale(0.9); } 10% { opacity: 1; transform: translate(-50%, 0) scale(1.05); } 15% { transform: translate(-50%, 0) scale(1); } 85% { opacity: 1; transform: translate(-50%, 0) scale(1); } 100% { opacity: 0; transform: translate(-50%, -10px) scale(0.95); } }';
         document.head.appendChild(style);
 
-        // 高级设置相关函数
+        // Advanced settings related functions
         function openAdvancedSettings() {
             const modal = document.getElementById('advancedModal');
             loadAdvancedSettings();
@@ -5371,28 +5372,28 @@ function config_Html(token = "test", proxyhost = "") {
             };
         }
 
-        // 格式化SOCKS5输入
+        // Formatting SOCKS5 input
         function formatSocks5Input(input) {
             if (!input) return input;
             
-            // 移除协议前缀和结尾的斜杠
+            // Remove the protocol prefix and trailing slash
             let formatted = input.trim()
-                .replace(/^socks5?:\\/\\//, '')  // 移除 socks5:// 或 socks://
-                .replace(/\\/$/, '')            // 移除结尾的 /
-                .replace(/#.*$/, '');           // 移除 # 及其后面的所有内容
+                .replace(/^socks5?:\\/\\//, '')  // Remove socks5:// 或 socks://
+                .replace(/\\/$/, '')            // Remove the ending /
+                .replace(/#.*$/, '');           // Remove # and everything that follows it
             
             return formatted;
         }
 
-        // 格式化HTTP输入
+        // Formatting HTTP input
         function formatHttpInput(input) {
             if (!input) return input;
             
-            // 移除协议前缀和结尾的斜杠
+            // Remove the protocol prefix and trailing slash
             let formatted = input.trim()
-                .replace(/^https?:\\/\\//, '')   // 移除 http:// 或 https://
-                .replace(/\\/$/, '')            // 移除结尾的 /
-                .replace(/#.*$/, '');           // 移除 # 及其后面的所有内容
+                .replace(/^https?:\\/\\//, '')   // Remove http:// or https://
+                .replace(/\\/$/, '')            // Remove the ending /
+                .replace(/#.*$/, '');           // Remove # and everything that follows it
             
             return formatted;
         }
@@ -5402,7 +5403,7 @@ function config_Html(token = "test", proxyhost = "") {
             const socks5Value = formatSocks5Input(document.getElementById('socks5Input').value);
             const httpValue = formatHttpInput(document.getElementById('httpInput').value);
             
-            // 更新输入框显示格式化后的值
+            // Update the input box to display the formatted value
             document.getElementById('socks5Input').value = socks5Value;
             document.getElementById('httpInput').value = httpValue;
             
@@ -5422,9 +5423,9 @@ function config_Html(token = "test", proxyhost = "") {
             localStorage.setItem('advancedSubscriptionSettings', JSON.stringify(settings));
             closeAdvancedSettings();
             
-            // 重新渲染订阅链接
+            // Re-render subscription links
             renderSubscriptionLinks();
-            showToast('🎉 设置已保存！请重新复制上方更新后的订阅链接，才能使自定义设置生效哦~', 5000);
+            showToast('🎉 Settings saved！Please re-copy the updated subscription link above，To make the custom settings take effect~', 5000);
         }
 
         function updateSettings() {
@@ -5436,13 +5437,13 @@ function config_Html(token = "test", proxyhost = "") {
             const enabled = document.getElementById(type + 'Enabled').checked;
             
             if (enabled) {
-                // 取消其他代理选项的勾选
+                // Uncheck other proxy options
                 const proxyTypes = ['proxyip', 'socks5', 'http'];
                 proxyTypes.forEach(proxyType => {
                     if (proxyType !== type) {
                         document.getElementById(proxyType + 'Enabled').checked = false;
                         document.getElementById(proxyType + 'Input').disabled = true;
-                        // 禁用其他代理的全局选项
+                        // Global option to disable other proxies
                         if (proxyType === 'socks5' || proxyType === 'http') {
                             const globalCheckbox = document.getElementById(proxyType + 'GlobalEnabled');
                             if (globalCheckbox) {
@@ -5456,7 +5457,7 @@ function config_Html(token = "test", proxyhost = "") {
             
             document.getElementById(type + 'Input').disabled = !enabled;
             
-            // 控制全局代理选项的启用/禁用
+            // Controls enabling/disabling of global proxy options
             if (type === 'socks5' || type === 'http') {
                 const globalCheckbox = document.getElementById(type + 'GlobalEnabled');
                 if (globalCheckbox) {
@@ -5473,7 +5474,7 @@ function config_Html(token = "test", proxyhost = "") {
             // 实际逻辑在保存时处理
         }
 
-        // 点击弹窗外部区域关闭弹窗
+        // Click outside the pop-up window to close it
         document.addEventListener('click', function(event) {
             const modal = document.getElementById('qrModal');
             if (event.target === modal) {
